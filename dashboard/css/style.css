@@ -1,0 +1,26 @@
+body
+{
+	background-image: url("../images/bodyPattern.png") !important;
+}
+
+h1
+{
+	color:#FA8072 !important;
+}
+
+
+#profilePhoto
+{
+	width:150px;
+	height:180px;
+}
+
+#uploadBtn
+{
+	
+}
+
+.container
+{
+	background:#FFF !important;
+}

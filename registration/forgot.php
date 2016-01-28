@@ -1,8 +1,8 @@
 
 <?php
 	
-		require('dbinfo.php');
-		require 'hr.php';
+require('dbinfo.php');
+require 'hr.php';
 ?>
 
 <?php
@@ -37,7 +37,7 @@
 						else
 							$errormessage ="your username and emaild do not match!";
 				}
-			}
+	}
 		
 		
 ?>

@@ -5,10 +5,8 @@ session_start();
 //adding here
 if($username=$_SESSION["username"])
 {
-	//adding here
 	//selectingall
-		$query = "SELECT * FROM registration1 WHERE username='$username'";
-	
+	$query = "SELECT * FROM registration1 WHERE username='$username'";
 		if (!$result=mysqli_query($connection,$query))
 		{
 			die("database connection failed " . mysqli_error($connection));
@@ -290,72 +288,54 @@ if($username=$_SESSION["username"])
 					
 				//for photo
  				
- 				$target_dir = "/var/www/html/assignment/mindfire/img/";
-				$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-				$fileToUpload=basename($_FILES["fileToUpload"]["name"]);
-				
-				//for image info
-				$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+ 			$target_dir = "/var/www/html/assignment/mindfire/img/";
+			$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+			$fileToUpload=basename($_FILES["fileToUpload"]["name"]);				
+			//for image info
+			$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
-				if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+			if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 							&& $imageFileType != "gif" && $_FILES["fileToUpload"]["size"] !== 0)
+			{
+
+				$errormessage .= "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+			}
+			if(empty($errormessage))
+			{
+				
+	    		if($_FILES["fileToUpload"]["size"] === 0)
+				{			
+					$query4= "UPDATE registration1 SET password='$password',fname='$fname',mname='$mname',lname='$lname',options='$options',dob='$dob',maritalstatus='$maritalstatus',employment='$employment',employer='$employer',phonenumber='$phonenumber',street='$street',ostreet='$ostreet',city='$city',ocity='$ocity',state='$state',ostate='$ostate',zipp='$zipp',ozipp='$ozipp',mobilenumber='$mobilenumber',omobilenumber='$omobilenumber',landlinenumber='$landlinenumber',olandlinenumber='$olandlinenumber',fax='$fax',ofax='$ofax',emailid='$emailid',oemailid='$oemailid',yo='$yo' WHERE username='$username'";
+
+				}									
+				else
+				{			
+					$query4= "UPDATE registration1 SET password='$password',fname='$fname',mname='$mname',lname='$lname',options='$options',dob='$dob',maritalstatus='$maritalstatus',employment='$employment',employer='$employer',phonenumber='$phonenumber',street='$street',ostreet='$ostreet',city='$city',ocity='$ocity',state='$state',ostate='$ostate',zipp='$zipp',ozipp='$ozipp',mobilenumber='$mobilenumber',omobilenumber='$omobilenumber',landlinenumber='$landlinenumber',olandlinenumber='$olandlinenumber',fax='$fax',ofax='$ofax',emailid='$emailid',oemailid='$oemailid',yo='$yo',fileToUpload='$fileToUpload' WHERE username='$username'";
+					
+				}
+				if (!$result=mysqli_query($connection,$query4))
 				{
-
-					$errormessage .= "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+					die("database connection failed " . mysqli_error($connection));
 				}
-
-
-
-				if(empty($errormessage))
- 				{
-				
-	    			if($_FILES["fileToUpload"]["size"] === 0)
-					{
-						
-						$query4= "UPDATE registration1 SET password='$password',fname='$fname',mname='$mname',lname='$lname',options='$options',dob='$dob',maritalstatus='$maritalstatus',employment='$employment',employer='$employer',phonenumber='$phonenumber',street='$street',ostreet='$ostreet',city='$city',ocity='$ocity',state='$state',ostate='$ostate',zipp='$zipp',ozipp='$ozipp',mobilenumber='$mobilenumber',omobilenumber='$omobilenumber',landlinenumber='$landlinenumber',olandlinenumber='$olandlinenumber',fax='$fax',ofax='$ofax',emailid='$emailid',oemailid='$oemailid',yo='$yo' WHERE username='$username'";
-
-					}
-					
-											
-					else
-					{
-
-						
-						$query4= "UPDATE registration1 SET password='$password',fname='$fname',mname='$mname',lname='$lname',options='$options',dob='$dob',maritalstatus='$maritalstatus',employment='$employment',employer='$employer',phonenumber='$phonenumber',street='$street',ostreet='$ostreet',city='$city',ocity='$ocity',state='$state',ostate='$ostate',zipp='$zipp',ozipp='$ozipp',mobilenumber='$mobilenumber',omobilenumber='$omobilenumber',landlinenumber='$landlinenumber',olandlinenumber='$olandlinenumber',fax='$fax',ofax='$ofax',emailid='$emailid',oemailid='$oemailid',yo='$yo',fileToUpload='$fileToUpload' WHERE username='$username'";
-					
-					}
-						if (!$result=mysqli_query($connection,$query4))
-						{
-							die("database connection failed " . mysqli_error($connection));
-						}
-						else
-						{
-							
-							header("Location: profile.php");
-							echo "SUCCESSFUL UPDATE!"; 
-
-
-						}
-
-						
-					
-					}
-				
-				}
-		
-
+				else
+				{				
+					header("Location: profile.php");
+					echo "SUCCESSFUL UPDATE!"; 
+				}							
+			}
+		}
 ?>
-			<h1 class="well">DO YOU WANT TO EDIT YOUR PROFILE?</h1>
-				<div class="row">
-					<div class="col-md-12">
-						<div id="message" class="jumbotron">
-							<?php
+	<h1 class="well">DO YOU WANT TO EDIT YOUR PROFILE?</h1>
+		<div class="row">
+			<div class="col-md-12">
+				<div id="message" class="jumbotron">
+					<?php
 
 						// if errors exit then show the div and the errors
-							if ($errormessage) {
-								echo "<br><label class='myLabel'>Please Fix the following errors: <br>$errormessage</label><br>";
+						if ($errormessage) {
+						echo "<br><label class='myLabel'>Please Fix the following errors: <br>$errormessage</label><br>";
 						                           
-						 		echo '<style type="text/css">
+						echo '<style type="text/css">
 
 								 #message { 
 						            display: block;
@@ -371,263 +351,190 @@ if($username=$_SESSION["username"])
 						            </style>';
 						        }
 
-						        ?>
-						    </div>
+				    ?>
+			    </div>
+			</div>
+		</div>
+		<div class="col-lg-12 well">						
+			<form action="edit.php" method="post"  enctype="multipart/form-data">												
+				<img id="profilePic"src="img/<?php echo  $profile['fileToUpload']; ?>" >
+					<input type="file" name="fileToUpload" id="fileToUpload" ><br>
+						<hr>
+						<div class="row">
+							<div class="col-sm-4 form-group">
+								<label>USERNAME</label>
+								<input class="form-control" type="text" name="username" value="<?php echo $profile['username'] ?>" >
+							</div>
+							<div class="col-sm-4 form-group">
+								<label>PASSWORD</label>
+								<input class="form-control" type="password" name="password" value="<?php echo $profile['password'] ?>" >
+							</div>
+							<div class="col-sm-4 form-group">													
+							</div>
 						</div>
-					</div>
-								<div class="col-lg-12 well">
-								
-								<form action="edit.php" method="post"  enctype="multipart/form-data">
-								
-										
-									<img id="profilePic"src="img/<?php echo  $profile['fileToUpload']; ?>" >
-									
-										<input type="file" name="fileToUpload" id="fileToUpload" ><br>
-											<hr>
-												<div class="row">
-													<div class="col-sm-4 form-group">
-														<label>USERNAME</label>
-															<input class="form-control" type="text" name="username" value="<?php echo $profile['username'] ?>" >
-													</div>
-
-												
-												<div class="col-sm-4 form-group">
-													<label>PASSWORD</label>
-														<input class="form-control" type="password" name="password" value="<?php echo $profile['password'] ?>" >
-												</div>
-
-												<div class="col-sm-4 form-group">
-													
-												</div>
-		
-											</div>
-
-											<div class="row">
-												<div class="col-sm-4 form-group">
-													<label>FIRST NAME</label>
-														<input class="form-control" type="text" name="fname" value="<?php echo $profile['fname'] ?>" >
-												</div>
-
-												
-												<div class="col-sm-4 form-group">
-													<label>MIDDLE NAME</label>
-														<input class="form-control" type="text" name="mname" value="<?php echo $profile['mname'] ?>">
-												</div>
-
-
-											
-												<div class="col-sm-4 form-group">
-													<label>LAST NAME</label>
-														<input class="form-control" type="text" name="lname" value="<?php echo $profile['lname'] ?>">
-												</div>
-											</div>
-
-
-
-											<div class="row">
-												<div class="col-sm-4 form-group">
-													
-
-													<?php if($profile['options']=="male")
+						<div class="row">
+							<div class="col-sm-4 form-group">
+								<label>FIRST NAME</label>
+								<input class="form-control" type="text" name="fname" value="<?php echo $profile['fname'] ?>" >
+							</div>					
+							<div class="col-sm-4 form-group">
+								<label>MIDDLE NAME</label>
+								<input class="form-control" type="text" name="mname" value="<?php echo $profile['mname'] ?>">
+							</div>						
+							<div class="col-sm-4 form-group">
+								<label>LAST NAME</label>
+								<input class="form-control" type="text" name="lname" value="<?php echo $profile['lname'] ?>">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-4 form-group">
+								<?php if($profile['options']=="male")
 													//?//php echo $profile['options']
-													echo "<label>GENDER:MALE</label>";
-													else 
-														echo "<label>GENDER:FEMALE</label>";
-
-													  ?> 
-														
-													
-																	</div> 
-												
-
-												<div class="col-sm-4 form-group">
-
-													<label>MARITAL STATUS</label>
-														<select class="form-control" id="maritalstatusselector" name="maritalstatus">
-															<option >Single</option> 
-															<option>Married</option>
-															<option>Separated</option>
-															<option>Divorced</option>
-															<option>Widowed</option>
-														</select>
-												</div>
-
-												<div class="col-sm-4 form-group">
-													<label>DATE OF BIRTH</label> 
-							                			<div class='input-group date'>
-							                    			<input type="date" class="form-control" id="datePicker" name="dob" value="<?php echo $profile['dob'] ?>">
-							                			</div>
-							                	</div>
-										
-											</div>
-
-
-
-											<div class="row">
-
-												<div class="col-sm-4 form-group">
-													<label>EMPLOYMENT</label>
-
-														<select class="form-control" id="employment" class="employment" name="employment">
-							        						<option>Student</option>
-							        						<option>Self-employed</option>
-							        						<option>Unemployed</option>
-							      						</select>
-							      				</div>
-
-							      				<div class="col-sm-4 form-group">
-													<label>EMPLOYER (if employed)</label>
-														<input class="form-control" type="text" value="<?php echo $profile['employer'] ?>" name="employer">
-												</div>
-
-
-
-							      				<div class="col-sm-4 form-group">
-													<label>PHONE NUMBER</label>
-														<input class="form-control" type="text" value="<?php echo $profile['phonenumber'] ?>" name="phonenumber">
-												</div>
-											</div>
-
-
-
-											<hr>
-											<div class="row">
-												<div class="col-sm-6 form-group">
-													<h4><strong>RESIDENTIAL ADDRESS</strong></h4>
-												</div>
-
-												<div class="col-sm-6 form-group">
-													<h4><strong>OFFICE ADDRESS</strong></h4>
-												</div>
-											</div>
-
-											<div class="row">
-												<div class="col-sm-6 form-group">
-													<label>	STREET</label>
-															<input class="form-control" type="text" value="<?php echo $profile['street'] ?>" name="street">
-												</div>
-
-												<div class="col-sm-6 form-group">
-													<label>	STREET</label>
-															<input class="form-control" type="text" value="<?php echo $profile['ostreet'] ?>" name="ostreet">
-												</div>
-
-											</div>
-
-											<div class="row">
-												<div class="col-sm-6 form-group">
-													<label>	CITY</label>
-															<input class="form-control" type="text" value="<?php echo $profile['city'] ?>" name="city">
-												</div>
-
-												<div class="col-sm-6 form-group">
-													<label>	CITY</label>
-															<input class="form-control" type="text" value="<?php echo $profile['ocity'] ?>" name="ocity">
-												</div>
-
-											</div>
-
-											<div class="row">
-												<div class="col-sm-6 form-group">
-													<label>	STATE</label>
-															<input class="form-control" type="text" value="<?php echo $profile['state'] ?>" name="state">
-												</div>
-
-												<div class="col-sm-6 form-group">
-													<label>	STATE</label>
-															<input class="form-control" type="text" value="<?php echo $profile['ostate'] ?>" name="ostate">
-												</div>
-
-											</div>
-
-											<div class="row">
-												<div class="col-sm-6 form-group">
-													<label>	ZIP</label>
-															<input class="form-control" type="number" value="<?php echo $profile['zipp'] ?>" name="zipp">
-												</div>
-
-												<div class="col-sm-6 form-group">
-													<label>	ZIP</label>
-															<input class="form-control" type="number" value="<?php echo $profile['ozipp'] ?>" name="ozipp">
-												</div>
-
-											</div>
-
-
-											<div class="row">
-												<div class="col-sm-6 form-group">
-													<label>	MOBILE NUMBER</label>
-															<input class="form-control" type="text" value="<?php echo $profile['mobilenumber'] ?>" name="mobilenumber">
-												</div>
-
-												<div class="col-sm-6 form-group">
-													<label>	MOBILE NUMBER</label>
-															<input class="form-control" type="text" value="<?php echo $profile['omobilenumber'] ?>" name="omobilenumber">
-												</div>
-
-											</div>
-
-
-											<div class="row">
-												<div class="col-sm-6 form-group">
-													<label>	LANDLINE NUMBER</label>
-															<input class="form-control" type="text" value="<?php echo $profile['landlinenumber'] ?>" name="landlinenumber">
-												</div>
-
-												<div class="col-sm-6 form-group">
-													<label>	LANDLINE NUMBER</label>
-															<input class="form-control" type="text" value="<?php echo $profile['olandlinenumber'] ?>" name="olandlinenumber">
-												</div>
-
-											</div>
-
-
-												<div class="row">
-													<div class="col-sm-6 form-group">
-														<label>	FAX</label>
-																<input class="form-control" type="text" value="<?php echo $profile['fax'] ?>" name="fax">
-													</div>
-
-													<div class="col-sm-6 form-group">
-														<label>	FAX</label>
-																<input class="form-control" type="text" value="<?php echo $profile['ofax'] ?>" name="ofax">
-													</div>
-
-												</div>
-
-											<div class="row">
-												<div class="col-sm-6 form-group">
-													<label>	EMAIL ID</label>
-															<input class="form-control" type="email" value="<?php echo $profile['emailid'] ?>" name="emailid">
-												</div>
-
-												<div class="col-sm-6 form-group">
-													<label>	EMAIL ID</label>
-															<input class="form-control" type="email" value="<?php echo $profile['oemailid'] ?>" name="oemailid">
-												</div>
-
-											</div>
-
-
-											<label for="comment">More about you:</label>
-								  				<textarea class="form-control" rows="5" id="more" name="yo" placeholder="update status!" ><?php echo $profile['yo']?></textarea>
-
-								  			<br>
-								 			 <button type="submit" class="btn btn-info" value="edit" name="edit">EDIT</button>
+										echo "<label>GENDER:MALE</label>";
+								      else 
+										echo "<label>GENDER:FEMALE</label>";
+								?> 					
+							</div> 
+							<div class="col-sm-4 form-group">
+								<label>MARITAL STATUS</label>
+								<select class="form-control" id="maritalstatusselector" name="maritalstatus">
+									<option >Single</option> 
+									<option>Married</option>
+									<option>Separated</option>
+									<option>Divorced</option>
+									<option>Widowed</option>
+								</select>
+							</div>
+							<div class="col-sm-4 form-group">
+								<label>DATE OF BIRTH</label> 
+						    	<div class='input-group date'>
+						         	<input type="date" class="form-control" id="datePicker" name="dob" value="<?php echo $profile['dob'] ?>">
+					   			</div>
+				        	</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-4 form-group">
+								<label>EMPLOYMENT</label>
+								<select class="form-control" id="employment" class="employment" name="employment">
+							   		<option>Student</option>
+									<option>Self-employed</option>
+							        <option>Unemployed</option>
+								</select>
+							</div>
+							<div class="col-sm-4 form-group">
+								<label>EMPLOYER (if employed)</label>
+								<input class="form-control" type="text" value="<?php echo $profile['employer'] ?>" name="employer">
+							</div>
+							<div class="col-sm-4 form-group">
+								<label>PHONE NUMBER</label>
+								<input class="form-control" type="text" value="<?php echo $profile['phonenumber'] ?>" name="phonenumber">
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-sm-6 form-group">
+							<h4><strong>RESIDENTIAL ADDRESS</strong></h4>
+							</div>
+							<div class="col-sm-6 form-group">
+							<h4><strong>OFFICE ADDRESS</strong></h4>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label>	STREET</label>
+									<input class="form-control" type="text" value="<?php echo $profile['street'] ?>" name="street">
+							</div>
+							<div class="col-sm-6 form-group">
+								<label>	STREET</label>
+									<input class="form-control" type="text" value="<?php echo $profile['ostreet'] ?>" name="ostreet">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label>	CITY</label>
+								<input class="form-control" type="text" value="<?php echo $profile['city'] ?>" name="city">
+							</div>
+							<div class="col-sm-6 form-group">
+								<label>	CITY</label>
+								<input class="form-control" type="text" value="<?php echo $profile['ocity'] ?>" name="ocity">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label>	STATE</label>
+								<input class="form-control" type="text" value="<?php echo $profile['state'] ?>" name="state">
+							</div>
+							<div class="col-sm-6 form-group">
+								<label>	STATE</label>
+								<input class="form-control" type="text" value="<?php echo $profile['ostate'] ?>" name="ostate">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label>	ZIP</label>
+								<input class="form-control" type="number" value="<?php echo $profile['zipp'] ?>" name="zipp">
+							</div>
+							<div class="col-sm-6 form-group">
+								<label>	ZIP</label>
+								<input class="form-control" type="number" value="<?php echo $profile['ozipp'] ?>" name="ozipp">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label>	MOBILE NUMBER</label>
+								<input class="form-control" type="text" value="<?php echo $profile['mobilenumber'] ?>" name="mobilenumber">
+							</div>
+							<div class="col-sm-6 form-group">
+								<label>	MOBILE NUMBER</label>
+								<input class="form-control" type="text" value="<?php echo $profile['omobilenumber'] ?>" name="omobilenumber">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label>	LANDLINE NUMBER</label>
+								<input class="form-control" type="text" value="<?php echo $profile['landlinenumber'] ?>" name="landlinenumber">
+							</div>
+							<div class="col-sm-6 form-group">
+								<label>	LANDLINE NUMBER</label>
+								<input class="form-control" type="text" value="<?php echo $profile['olandlinenumber'] ?>" name="olandlinenumber">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label>	FAX</label>
+								<input class="form-control" type="text" value="<?php echo $profile['fax'] ?>" name="fax">
+							</div>
+							<div class="col-sm-6 form-group">
+								<label>	FAX</label>
+								<input class="form-control" type="text" value="<?php echo $profile['ofax'] ?>" name="ofax">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label>	EMAIL ID</label>
+								<input class="form-control" type="email" value="<?php echo $profile['emailid'] ?>" name="emailid">
+							</div>
+							<div class="col-sm-6 form-group">
+								<label>	EMAIL ID</label>
+								<input class="form-control" type="email" value="<?php echo $profile['oemailid'] ?>" name="oemailid">
+							</div>
+						</div>
+						<label for="comment">More about you:</label>
+						<textarea class="form-control" rows="5" id="more" name="yo" placeholder="update status!" ><?php echo $profile['yo']?></textarea>
+						<br>
+						 <button type="submit" class="btn btn-info" value="edit" name="edit">EDIT</button>
 								 		
-</form>
-</div>
-</div>
+					</form>
+				</div>
+			</div>
 
 <?php
 }
-
 else
 {
 	header("Location:login.php");
 }
 ?>
-
 
 <?php
  	//close the connection

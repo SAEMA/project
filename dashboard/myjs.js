@@ -1,26 +1,40 @@
-
-function validform()
+function forall()
 {
-	var ph = document.myform.phonenumber;
-	var message = (fnvalid(ph));
-
-
-
-	if(message==0)
+	var message = "";
+	message += caps();
+	message += emp();
+	
+	message += pwd();
+	message += myname('id2','fname');
+	message += myname('id3','mname');
+	message += myname('id4','lname');
+	message += myfne('id5','phonenumber');
+	message += mystreet('id20','street');
+	message += mystreet('id21','ostreet');
+	message += myname('id7','city');
+	message += myname('id8','ocity');
+	message += myname('id9','state');
+	message += myname('id10','ostate');
+	message += myfne('id13','mobilenumber');
+	message += myfne('id14','omobilenumber');
+	message += myfne('id15','landlinenumber');
+	message += myfne('id16','olandlinenumber');
+	message += myfax('id17','fax');
+	message += myfax('id18','ofax');
+	message += email('id19','emailid');
+	message += email('id22','oemailid');
+	if(message === "" || message === null)
 	{
-		
+		return true;
 	}
-	else alert(message);
-}
-function fnvalid(ph)
-{
-	if(isNaN(ph))
+	else
 	{
-		return "PHONE NUMBER MUST BE A NUMBER";
+		return false;
 	}
-	else 
-		return "";
+
+
 }
+
 function caps()
 {
 	var x = document.getElementById("usr");
@@ -28,7 +42,6 @@ function caps()
 	var alpha = /^[A-Za-z]+$/;
 	if(x.value.match(alpha))
 	{
-
 		document.getElementById("id1").innerHTML = "";
 	}
 	else if(x.value ==="" || x.value === null)
@@ -39,81 +52,9 @@ function caps()
 	{
 		document.getElementById("id1").innerHTML = "no numbers please!";
 	}
-}
-function myfname()
-{
-	var x = document.getElementById("fname");
-	var alpha = /^[A-Za-z]+$/;
-	if(x.value.match(alpha))
-	{
+}//for username
 
-		document.getElementById("id2").innerHTML = "";
-	}
-	else if(x.value ==="" || x.value === null)
-	{
-		document.getElementById("id2").innerHTML ="do not leave it empty!";
-	}
-	else
-	{
-		document.getElementById("id2").innerHTML = "no numbers please!";
-	}
-}
-function mymname()
-{
-	var x = document.getElementById("mname");
-	var alpha = /^[A-Za-z]+$/;
-	if(x.value.match(alpha))
-	{
 
-		document.getElementById("id3").innerHTML = "";
-	}
-	else if(x.value ==="" || x.value === null)
-	{
-		document.getElementById("id3").innerHTML ="do not leave it empty!";
-	}
-	else
-	{
-		document.getElementById("id3").innerHTML = "no numbers please!";
-	}
-}
-function mylname()
-{
-	var x = document.getElementById("lname");
-	var alpha = /^[A-Za-z]+$/;
-	if(x.value.match(alpha))
-	{
-
-		document.getElementById("id4").innerHTML = "";
-	}
-	else if(x.value ==="" || x.value === null)
-	{
-		document.getElementById("id4").innerHTML ="do not leave it empty!";
-	}
-	else
-	{
-		document.getElementById("id4").innerHTML = "no numbers please!";
-	}
-}
-function myfne()
-{
-	var x = document.getElementById("phonenumber");
-	if(isNaN(x.value))
-	{
-		document.getElementById("id5").innerHTML="only numbers please!";
-	}
-	else if(x.value ==="" || x.value === null)
-	{
-		document.getElementById("id5").innerHTML ="do not leave it empty!";
-	}
-	else if(x.value.length < 10)
-	{
-		document.getElementById("id5").innerHTML="must be 10 numbers";
-	}
-	else 
-	{
-		document.getElementById("id5").innerHTML="";
-	}
-}
 function emp()
 {
 	var x = document.getElementById("employer");
@@ -128,217 +69,116 @@ function emp()
 		document.getElementById("id6").innerHTML = "hey employer name can't be numeric!";
 	}
 	
-}
-function mycity()
+}//for employer if present
+
+function myfne(id,name)
 {
-	var x = document.getElementById("city");
+	var x = document.getElementById(name);
+	if(isNaN(x.value))
+	{
+		document.getElementById(id).innerHTML="only numbers please!";
+	}
+	else if(x.value ==="" || x.value === null)
+	{
+		document.getElementById(id).innerHTML ="do not leave it empty!";
+	}
+	else if(x.value.length < 10)
+	{
+		document.getElementById(id).innerHTML="must be 10 numbers";
+	}
+	else 
+	{
+		document.getElementById(id).innerHTML="";
+	}
+}//for fne num ,landline mobile etc
+
+function myname(id,name)
+{
+	var x = document.getElementById(name);
 	var alpha = /^[A-Za-z]+$/;
 	if(x.value.match(alpha))
 	{
 
-		document.getElementById("id7").innerHTML = "";
+		document.getElementById(id).innerHTML = "";
+	}
+	else if(x.value ==="" || x.value === null)
+	{
+		document.getElementById(id).innerHTML ="do not leave it empty!";
 	}
 	else
 	{
-		document.getElementById("id7").innerHTML = "hey city can't be numeric!";
+		document.getElementById(id).innerHTML = "no numbers please!";
 	}
-	
 }
-function myocity()
+//for string
+
+ function email(id,name)
 {
-	var x = document.getElementById("ocity");
-	var alpha = /^[A-Za-z]+$/;
+	var x = document.getElementById(name);
+	var alpha= '/^[a-z0-9_-]+@[a-z0-9._-]+\.[a-z]+$/i';
+	if(x.value.match(alpha))
+	{
+		document.getElementById(id).innerHTML = "";
+	}
+	else if(x.value==="" || x.value === null)
+	{
+		document.getElementById(id),innerHTML="do not leave it empty!"; 
+	}
+	else
+	{
+		document.getElementById(id).innerHTML="Please enter a valid email id";
+	}
+} //for emailid
+
+function myzipp(id,name)
+{
+	var x = document.getElementById(name);
+	if(isNaN(x.value))
+	{
+		document.getElementById(id).innerHTML="only numbers please!";
+	}
+	else if(x.value ==="" || x.value === null)
+	{
+		document.getElementById(id).innerHTML ="do not leave it empty!";
+	}
+	else if(x.value.length < 7)
+	{
+		document.getElementById(id).innerHTML="must be 7 numbers";
+	}
+	else 
+	{
+		document.getElementById(id).innerHTML="";
+	}
+}//for fax
+function mystreet(id,name)
+{
+	var x = document.getElementById(name);
+	var alpha = /^[0-9A-Za-z]+$/;
+	isempty(id,x);
 	if(x.value.match(alpha))
 	{
 
-		document.getElementById("id8").innerHTML = "";
+		document.getElementById(id).innerHTML = "";
 	}
-	else
+	else if(x.value ==="" || x.value === null)
 	{
-		document.getElementById("id8").innerHTML = "hey office city can't be numeric!";
+		document.getElementById(id).innerHTML ="do not leave it empty!";
 	}
 	
-}
-function mystate()
-{
-	var x = document.getElementById("state");
-	var alpha = /^[A-Za-z]+$/;
-	if(x.value.match(alpha))
-	{
-
-		document.getElementById("id9").innerHTML = "";
-	}
 	else
 	{
-		document.getElementById("id9").innerHTML = "hey state can't be numeric!";
+		document.getElementById(id).innerHTML = "no special characters please!";
 	}
 	
-}
-function myostate()
+}//mystreet
+function pwd()
 {
-	var x = document.getElementById("ostate");
-	var alpha = /^[A-Za-z]+$/;
-	if(x.value.match(alpha))
+	var pwd = document.getElementById("password");
+	var retype = document.getElementById("retypepassword");
+	
+	 if(pwd.value != retype.value)
 	{
-
-		document.getElementById("id10").innerHTML = "";
-	}
-	else
-	{
-		document.getElementById("id10").innerHTML = "hey office state can't be numeric!";
+		document.getElementById("id24").innerHTML="retyped password does not match";
 	}
 	
-}
-function myzipp()
-{
-	var x = document.getElementById("zipp");
-	if(isNaN(x.value))
-	{
-		document.getElementById("id11").innerHTML="only numbers please!";
-	}
-	else if(x.value ==="" || x.value === null)
-	{
-		document.getElementById("id11").innerHTML ="do not leave it empty!";
-	}
-	else 
-	{
-		document.getElementById("id11").innerHTML="";
-	}
-}
-function myozipp()
-{
-	var x = document.getElementById("ozipp");
-	if(isNaN(x.value))
-	{
-		document.getElementById("id12").innerHTML="only numbers please!";
-	}
-	else if(x.value ==="" || x.value === null)
-	{
-		document.getElementById("id12").innerHTML ="do not leave it empty!";
-	}
-	else 
-	{
-		document.getElementById("id12").innerHTML="";
-	}
-}
-function mymob()
-{
-	var x = document.getElementById("mobilenumber");
-	if(isNaN(x.value))
-	{
-		document.getElementById("id13").innerHTML="only numbers please!";
-	}
-	else if(x.value ==="" || x.value === null)
-	{
-		document.getElementById("id13").innerHTML ="do not leave it empty!";
-	}
-	else if(x.value.length < 10)
-	{
-		document.getElementById("id13").innerHTML="must be 10 numbers";
-	}
-	else 
-	{
-		document.getElementById("id13").innerHTML="";
-	}
-}
-function myomob()
-{
-	var x = document.getElementById("omobilenumber");
-	if(isNaN(x.value))
-	{
-		document.getElementById("id14").innerHTML="only numbers please!";
-	}
-	else if(x.value ==="" || x.value === null)
-	{
-		document.getElementById("id14").innerHTML ="do not leave it empty!";
-	}
-	else if(x.value.length < 10)
-	{
-		document.getElementById("id14").innerHTML="must be 10 numbers";
-	}
-	else 
-	{
-		document.getElementById("id14").innerHTML="";
-	}
-}
-function mylandline()
-{
-	var x = document.getElementById("landlinenumber");
-	if(isNaN(x.value))
-	{
-		document.getElementById("id15").innerHTML="only numbers please!";
-	}
-	else if(x.value ==="" || x.value === null)
-	{
-		document.getElementById("id15").innerHTML ="do not leave it empty!";
-	}
-	else if(x.value.length < 10)
-	{
-		document.getElementById("id15").innerHTML="must be 10 numbers";
-	}
-	else 
-	{
-		document.getElementById("id15").innerHTML="";
-	}
-}
-function myolandline()
-{
-	var x = document.getElementById("olandlinenumber");
-	if(isNaN(x.value))
-	{
-		document.getElementById("id16").innerHTML="only numbers please!";
-	}
-	else if(x.value ==="" || x.value === null)
-	{
-		document.getElementById("id16").innerHTML ="do not leave it empty!";
-	}
-	else if(x.value.length < 10)
-	{
-		document.getElementById("id16").innerHTML="must be 10 numbers";
-	}
-	else 
-	{
-		document.getElementById("id16").innerHTML="";
-	}
-}
-function myfax()
-{
-	var x = document.getElementById("fax");
-	if(isNaN(x.value))
-	{
-		document.getElementById("id17").innerHTML="only numbers please!";
-	}
-	else if(x.value ==="" || x.value === null)
-	{
-		document.getElementById("id17").innerHTML ="do not leave it empty!";
-	}
-	else if(x.value.length < 10)
-	{
-		document.getElementById("id17").innerHTML="must be 10 numbers";
-	}
-	else 
-	{
-		document.getElementById("id17").innerHTML="";
-	}
-}
-function myofax()
-{
-	var x = document.getElementById("ofax");
-	if(isNaN(x.value))
-	{
-		document.getElementById("id18").innerHTML="only numbers please!";
-	}
-	else if(x.value ==="" || x.value === null)
-	{
-		document.getElementById("id18").innerHTML ="do not leave it empty!";
-	}
-	else if(x.value.length < 10)
-	{
-		document.getElementById("id18").innerHTML="must be 10 numbers";
-	}
-	else 
-	{
-		document.getElementById("id18").innerHTML="";
-	}
-}
-
+}//for retyped pwd

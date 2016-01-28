@@ -4,7 +4,6 @@
 
 		require 'hr.php';
 
-
 		if(mysqli_connect_errno())
 		{
 			die("database connection failed:" .mysqli_connect_error() . "(" . mysqli_connect_errno(). ")");
@@ -236,8 +235,6 @@
  			else
  					
  				$errormessage .= "<br>LANDLINE NUMBER MUST BE 10 NUMBERS</br>";
- 	
-
 
  			if(!isset($_POST["olandlinenumber"]) || empty($_POST["olandlinenumber"]))
  			{
@@ -315,318 +312,231 @@
  				header("Location: mail.php");
 
 
+ 					}
+ 				}
+
  			}
- 		}
 
- 	}
+ 			?>
 
- 	?>
+			</head>
+			<body>
+				<div class="container">
 
- 				
-
-</head>
-<body>
-	<div class="container">
-
-		<h1 class="well">REGISTRATION FORM</h1>
+				<h1 class="well">REGISTRATION FORM</h1>
 
 		<!-- This div is used to display messages to the user -->
-		<div class="row">
-			<div class="col-md-12">
-				<div id="message" class="jumbotron">
-					<?php
+				<div class="row">
+					<div class="col-md-12">
+						<div id="message" class="jumbotron">
+							<?php
 
-						                        // if errors exit then show the div and the errors
-					if ($errormessage) {
-						echo "<br><label class='myLabel'>Please Fix the following errors: $errormessage</label><br>";
-						                          
-						 echo '<style type="text/css">
+									                        // if errors exit then show the div and the errors
+								if ($errormessage) {
+									echo "<br><label class='myLabel'>Please Fix the following errors: $errormessage</label><br>";
+									                          
+									 echo '<style type="text/css">
 
-						 #message { 
-						               display: block;
-						                        }
-						        </style>';
-						          }
-
-						                         // if errors doesnot exit then hide the div
-						                else {
-						                	echo '<style type="text/css">
-						                            #message { 
-						                	display: none; 
-						                }
-						            </style>';
-						        }
-						        ?>
-						    </div>
+									 #message { 
+									               display: block;
+									                        }
+									        </style>';
+									          }
+									                         // if errors doesnot exit then hide the div
+									                else {
+									                	echo '<style type="text/css">
+									                            #message { 
+									                	display: none; 
+									                }
+									            </style>';
+									          }
+						   ?>
 						</div>
 					</div>
+				</div>
+				<div class="col-lg-12 well">
 
-
-
-
-					<div class="col-lg-12 well">
-
-						<form action="details.php" method="post" enctype="multipart/form-data" name="myform" onsubmit="return confirm('Do you really want to confirm?')">
-
-
-
-
-							<div class="row">
-								<div class="col-md-12">
-									<input type="file" name="fileToUpload" id="fileToUpload"><br>
+				<form action="details.php" method="post" enctype="multipart/form-data" name="myform" onsubmit="return forall()">
+					<div class="row">
+						<div class="col-md-12">
+							<input type="file" name="fileToUpload" id="fileToUpload"><br>
 									<!--<input type="submit" value="Upload Image" name="submit"> -->
-
-								</div>	
-							</div><hr>
-
-
-
-
-
-
-							<div class="row">
-								<div class="col-sm-4 form-group">
-									<label>USERNAME</label>
-									<input class="form-control" id="usr" type="text" name="username" maxlength=20 required placeholder="Enter username Name Here.." value="<?php echo $_POST['username'] ?>" onchange= "caps()" required><p id="id1"></p>
-								</div>
-
-
-								<div class="col-sm-4 form-group">
-									<label>PASSWORD</label>
-									<input class="form-control" type="password" name="password" required placeholder="Password must be max 5 characters ." value="<?php echo $_POST['password']?>">
-								</div>
-
-
-
-								<div class="col-sm-4 form-group">
-									<label>RETYPE PASSWORD</label>
-									<input class="form-control" type="password" name="retypepassword" required placeholder="RETYPE PASSWORD Here.." >
-								</div>
-							</div>
-
-
-
-
-							<div class="row">
-								<div class="col-sm-4 form-group">
-									<label>FIRST NAME</label>
-									<input class="form-control" type="text" name="fname" maxlength=10 required placeholder="Enter firstname Name Here.." id="fname" onchange="myfname()" value="<?php echo $_POST['fname']?>" ><p id="id2"></p>
-
-								</div>
-
-
-								<div class="col-sm-4 form-group">
-									<label>MIDDLE NAME</label>
-									<input class="form-control" type="text" name="mname" maxlength=10 required placeholder="Enter middle name Here.." id="mname" onchange="mymname()" value="<?php echo $_POST['mname']?>"><p id="id3"></p>
-								</div>
-
-
-
-								<div class="col-sm-4 form-group">
-									<label>LAST NAME</label>
-									<input class="form-control" type="text" name="lname" maxlength=10 required placeholder="Enter last name Here.." id="lname" onchange="mylname()" value="<?php echo $_POST['lname']?>" ><p id="id4"></p>
-								</div>
-							</div>
-
-
-
-							<div class="row">
-								<div class="col-sm-4 form-group">
-									<label>GENDER</label>
-
-									<div class="radio">
-										<label><input type="radio" name="options" value="male"> Male</male></label>
-
-
-
-
+						</div>	
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-sm-4 form-group">
+							<label>USERNAME</label>
+							<input class="form-control" id="usr" type="text" name="username" maxlength=20 required placeholder="Enter username Name Here.." value="<?php echo $_POST['username'] ?>" onchange= "caps()" required><p id="id1"></p>
+						</div>
+						<div class="col-sm-4 form-group">
+							<label>PASSWORD</label>
+							<input class="form-control" type="password" name="password" id="password" maxlength= 5 required placeholder="Password must be max 5 characters ." value="<?php echo $_POST['password']?>"><p id="id23"></p>
+						</div>
+						<div class="col-sm-4 form-group">
+							<label>RETYPE PASSWORD</label>
+							<input class="form-control" type="password" name="retypepassword" maxlength= 5 id="retypepassword" onchange="pwd()" required placeholder="RETYPE PASSWORD Here.." ><p id="id24"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4 form-group">
+							<label>FIRST NAME</label>
+							<input class="form-control" type="text" name="fname" maxlength=10 required placeholder="Enter firstname Name Here.." id="fname" onchange="myname('id2','fname')" value="<?php echo $_POST['fname']?>" ><p id="id2"></p>
+						</div>
+						<div class="col-sm-4 form-group">
+							<label>MIDDLE NAME</label>
+							<input class="form-control" type="text" name="mname" maxlength=10 required placeholder="Enter middle name Here.." id="mname" onchange="myname('id3','mname')" value="<?php echo $_POST['mname']?>"><p id="id3"></p>
+						</div>
+						<div class="col-sm-4 form-group">
+							<label>LAST NAME</label>
+							<input class="form-control" type="text" name="lname" maxlength=10 required placeholder="Enter last name Here.." id="lname" onchange="myname('id4','lname')" value="<?php echo $_POST['lname']?>" ><p id="id4"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4 form-group">
+							<label>GENDER</label>
+								<div class="radio">
+									<label><input type="radio" name="options" value="male"> Male</male></label>
 										<label><input type="radio" name="options" value="female">Female</male></label>
-									</div>
 								</div>
-
-								<div class="col-sm-4 form-group">
-
-									<label>MARITAL STATUS</label>
-									<select class="form-control" id="maritalstatusselector" name="maritalstatus">
-										<option>Single</option> 
-										<option>Married</option>
-										<option>Separated</option>
-										<option>Divorced</option>
-										<option>Widowed</option>
-									</select>
+						</div>
+						<div class="col-sm-4 form-group">
+							<label>MARITAL STATUS</label>
+								<select class="form-control" id="maritalstatusselector" name="maritalstatus">
+									<option>Single</option> 
+									<option>Married</option>
+									<option>Separated</option>
+									<option>Divorced</option>
+									<option>Widowed</option>
+								</select>
+						</div>
+						<div class="col-sm-4 form-group">
+							<label>DATE OF BIRTH</label> 
+								<div class='input-group date'>
+									<input type="date" class="form-control" id="datePicker" name="dob" required value="<?php echo $_POST['dob']?>">
 								</div>
-
-								<div class="col-sm-4 form-group">
-									<label>DATE OF BIRTH</label> 
-									<div class='input-group date'>
-										<input type="date" class="form-control" id="datePicker" name="dob" required value="<?php echo $_POST['dob']?>">
-									</div>
-								</div>
-
-							</div>
-
-
-							<div class="row">
-
-								<div class="col-sm-4 form-group">
-									<label>EMPLOYMENT</label>
-
-									<select class="form-control" id="employment" class="employment" name="employment">
-										<option>Student</option>
-										<option>Self-employed</option>
-										<option>Unemployed</option>
-									</select>
-								</div>
-
-								<div class="col-sm-4 form-group">
-									<label>EMPLOYER (if employed)</label>
-									<input class="form-control" type="text" placeholder="Enter employer Here.." name="employer" onchange="emp()" id="employer" value="<?php echo $_POST['employer']?>"><p id="id6"></p>
-								</div>
-
-
-
-								<div class="col-sm-4 form-group">
-									<label>PHONE NUMBER</label>
-									<input class="form-control" type="text" maxlength=10 placeholder="Enter phone number Here.." name="phonenumber" id="phonenumber" onchange="myfne()" required value="<?php echo $_POST['phonenumber']?>"><p id="id5"></p>
-								</div>
-							</div>
-
-							<hr>
-							<div class="row">
-								<div class="col-sm-6 form-group">
-									<h4><strong>RESIDENTIAL ADDRESS</strong></h4>
-								</div>
-
-								<div class="col-sm-6 form-group">
-									<h4><strong>OFFICE ADDRESS</strong></h4>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-sm-6 form-group">
-									<label>	STREET</label>
-									<input class="form-control" type="text" maxlength=20 placeholder="Enter street Name Here.." name="street" required value="<?php echo $_POST['street']?>">
-								</div>
-
-								<div class="col-sm-6 form-group">
-									<label>	STREET</label>
-									<input class="form-control" type="text" maxlength=20 placeholder="Enter office street Name Here.." name="ostreet" required value="<?php echo $_POST['ostreet']?>">
-								</div>
-
-							</div>
-
-							<div class="row">
-								<div class="col-sm-6 form-group">
-									<label>	CITY</label>
-									<input class="form-control" type="text" maxlength=20 placeholder="Enter city Name Here.." name="city" id="city" onchange="mycity()" required value="<?php echo $_POST['city']?>"><p id="id7"></p>
-								</div>
-
-								<div class="col-sm-6 form-group">
-									<label>	CITY</label>
-									<input class="form-control" type="text" placeholder="Enter office city Name Here.." name="ocity" id="ocity" onchange="myocity()" required value="<?php echo $_POST['ocity']?>"><p id="id8"></p>
-								</div>
-
-							</div>
-
-							<div class="row">
-								<div class="col-sm-6 form-group">
-									<label>	STATE</label>
-									<input class="form-control" type="text" maxlength=20 placeholder="Enter state Name Here.." name="state" id="state" onchange="mystate()" required value="<?php echo $_POST['state']?>"><p id="id9"></p>
-								</div>
-
-								<div class="col-sm-6 form-group">
-									<label>	STATE</label>
-									<input class="form-control" type="text" maxlength=20 placeholder="Enter office state Name Here.." name="ostate" id="ostate"  onchange="myostate()" required value="<?php echo $_POST['ostate']?>"><p id="id10"></p>
-								</div>
-
-							</div>
-
-							<div class="row">
-								<div class="col-sm-6 form-group">
-									<label>	ZIP</label>
-									<input class="form-control" type="number" maxlength=20 placeholder="Enter zip Name Here.." name="zipp" id="zipp" onchange="myzipp()" required value="<?php echo $_POST['zipp']?>"><p id="id11"></p>
-								</div>
-
-								<div class="col-sm-6 form-group">
-									<label>	ZIP</label>
-									<input class="form-control" type="number" maxlength=20 placeholder="Enter office zip Name Here.." name="ozipp" id ="ozipp" onchange="myozipp()" required value="<?php echo $_POST['ozipp']?>"><p id="id12"></p>
-								</div>
-
-							</div>
-
-
-							<div class="row">
-								<div class="col-sm-6 form-group">
-									<label>	MOBILE NUMBER</label>
-									<input class="form-control" type="text" maxlength=10 placeholder="Enter mobile number Name Here.." id="mobilenumber" onchange = "mymob()" name="mobilenumber" required value="<?php echo $_POST['mobilenumber']?>"><p id="id13"></p>
-								</div>
-
-								<div class="col-sm-6 form-group">
-									<label>	MOBILE NUMBER</label>
-									<input class="form-control" type="text" maxlength=10 placeholder="Enter office mobilenumber Name Here.." name="omobilenumber" id="omobilenumber" onchange = "myomob()" required value="<?php echo $_POST['omobilenumber']?>"><p id="id14"></p>
-								</div>
-
-							</div>
-
-
-							<div class="row">
-								<div class="col-sm-6 form-group">
-									<label>	LANDLINE NUMBER</label>
-									<input class="form-control" type="text" maxlength=10 placeholder="Enter landline number Name Here.." id="landlinenumber" onchange ="mylandline()" name="landlinenumber" required value="<?php echo $_POST['landlinenumber']?>"><p id="id15"></p>
-								</div>
-
-								<div class="col-sm-6 form-group">
-									<label>	LANDLINE NUMBER</label>
-									<input class="form-control" type="text" maxlength=10 placeholder="Enter office landline number Name Here.." id="olandlinenumber" onchange="myolandline()" name="olandlinenumber" required value="<?php echo $_POST['olandlinenumber']?>"><p id="id16"></p>
-								</div>
-
-							</div>
-
-
-							<div class="row">
-								<div class="col-sm-6 form-group">
-									<label>	FAX</label>
-									<input class="form-control" type="text" maxlength=20 placeholder="Enter fax Name Here.." name="fax" id="fax" onchange ="myfax()" required value="<?php echo $_POST['fax']?>"><p id="id17"></p>
-								</div>
-
-								<div class="col-sm-6 form-group">
-									<label>	FAX</label>
-									<input class="form-control" type="text" maxlength=20 placeholder="Enter company fax Name Here.." id="ofax" onchange="myofax()" name="ofax" required value="<?php echo $_POST['ofax']?>"><p id="id18"></p>
-								</div>
-
-							</div>
-
-							<div class="row">
-								<div class="col-sm-6 form-group">
-									<label>	EMAIL ID</label>
-									<input class="form-control" type="email" maxlength=50 placeholder="Enter EMAIL ID Here.." name="emailid" required value="<?php echo $_POST['emailid']?>">
-								</div>
-
-								<div class="col-sm-6 form-group">
-									<label>	EMAIL ID</label>
-									<input class="form-control" type="email" maxlength=50 placeholder="Enter company EMAIL ID Here.." name="oemailid" required value="<?php echo $_POST['oemailid']?>">
-								</div>
-
-							</div>
-
-
-							<label for="comment">More about you:</label>
-							<textarea class="form-control" rows="5" id="more" name="yo"><?php echo $_POST['yo']?></textarea>
-
-							<div class="checkbox">
-								<label><input type="checkbox"> I AGREE </label>
-							</div>
-							<div class="row">
-							<button type="submit" name="submit" class="btn btn-info" onclick="return validfrom();"value="submit">Submit</button>
-							
-							</div>
-						</form>
-					</div> </div>
-
-				</body>
-
-				</html>
-
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4 form-group">
+							<label>EMPLOYMENT</label>
+								<select class="form-control" id="employment" class="employment" name="employment">
+									<option>Student</option>
+									<option>Self-employed</option>
+									<option>Unemployed</option>
+								</select>
+						</div>
+						<div class="col-sm-4 form-group">
+							<label>EMPLOYER (if employed)</label>
+							<input class="form-control" type="text" placeholder="Enter employer Here.." name="employer" onchange="emp()" id="employer" value="<?php echo $_POST['employer']?>"><p id="id6"></p>
+						</div>
+						<div class="col-sm-4 form-group">
+							<label>PHONE NUMBER</label>
+							<input class="form-control" type="text" maxlength=10 placeholder="Enter phone number Here.." name="phonenumber" id="phonenumber" onchange="myfne('id5','phonenumber')" required value="<?php echo $_POST['phonenumber']?>"><p id="id5"></p>
+						</div>
+					</div>
+					<hr>
+					<div class="row">
+						<div class="col-sm-6 form-group">
+							<h4><strong>RESIDENTIAL ADDRESS</strong></h4>
+						</div>
+						<div class="col-sm-6 form-group">
+							<h4><strong>OFFICE ADDRESS</strong></h4>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6 form-group">
+							<label>	STREET</label>
+								<input class="form-control" type="text" maxlength=20 onchange="mystreet('id20','street')" id="street" placeholder="Enter street Name Here.." name="street" required value="<?php echo $_POST['street']?>"><p id="id20"></p>
+						</div>
+						<div class="col-sm-6 form-group">
+							<label>	STREET</label>
+								<input class="form-control" type="text" maxlength=20 onchange="mystreet('id21','ostreet')" id="ostreet" placeholder="Enter office street Name Here.." name="ostreet" required value="<?php echo $_POST['ostreet']?>"><p id="id21"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6 form-group">
+							<label>	CITY</label>
+							<input class="form-control" type="text" maxlength=20 placeholder="Enter city Name Here.." name="city" id="city" onchange="myname('id7','city')" required value="<?php echo $_POST['city']?>"><p id="id7"></p>
+						</div>
+						<div class="col-sm-6 form-group">
+							<label>	CITY</label>
+							<input class="form-control" type="text" placeholder="Enter office city Name Here.." name="ocity" id="ocity" onchange="myname('id8','ocity')" required value="<?php echo $_POST['ocity']?>"><p id="id8"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6 form-group">
+							<label>	STATE</label>
+							<input class="form-control" type="text" maxlength=20 placeholder="Enter state Name Here.." name="state" id="state" onchange="myname('id9','state')" required value="<?php echo $_POST['state']?>"><p id="id9"></p>
+						</div>
+						<div class="col-sm-6 form-group">
+							<label>	STATE</label>
+							<input class="form-control" type="text" maxlength=20 placeholder="Enter office state Name Here.." name="ostate" id="ostate"  onchange="myname('id10','ostate')" required value="<?php echo $_POST['ostate']?>"><p id="id10"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6 form-group">
+							<label>	ZIP</label>
+							<input class="form-control" type="number" maxlength=20 placeholder="Enter zip Name Here.." name="zipp" id="zipp" onchange="myzipp('id11','zipp')" required value="<?php echo $_POST['zipp']?>"><p id="id11"></p>
+						</div>
+						<div class="col-sm-6 form-group">
+							<label>	ZIP</label>
+							<input class="form-control" type="number" maxlength=20 placeholder="Enter office zip Name Here.." name="ozipp" id ="ozipp" onchange="myzipp('id12','ozipp')" required value="<?php echo $_POST['ozipp']?>"><p id="id12"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6 form-group">
+							<label>	MOBILE NUMBER</label>
+							<input class="form-control" type="text" maxlength=10 placeholder="Enter mobile number Name Here.." id="mobilenumber" onchange = "myfne('id13','mobilenumber')" name="mobilenumber" required value="<?php echo $_POST['mobilenumber']?>"><p id="id13"></p>
+						</div>
+						<div class="col-sm-6 form-group">
+							<label>	MOBILE NUMBER</label>
+							<input class="form-control" type="text" maxlength=10 placeholder="Enter office mobilenumber Name Here.." name="omobilenumber" id="omobilenumber" onchange = "myfne('id14','omobilenumber')" required value="<?php echo $_POST['omobilenumber']?>"><p id="id14"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6 form-group">
+							<label>	LANDLINE NUMBER</label>
+							<input class="form-control" type="text" maxlength=10 placeholder="Enter landline number Name Here.." id="landlinenumber" onchange ="myfne('id15','landlinenumber')" name="landlinenumber" required value="<?php echo $_POST['landlinenumber']?>"><p id="id15"></p>
+						</div>
+						<div class="col-sm-6 form-group">
+							<label>	LANDLINE NUMBER</label>
+							<input class="form-control" type="text" maxlength=10 placeholder="Enter office landline number Name Here.." id="olandlinenumber" onchange="myfne('id16','olandlinenumber')" name="olandlinenumber" required value="<?php echo $_POST['olandlinenumber']?>"><p id="id16"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6 form-group">
+							<label>	FAX</label>
+							<input class="form-control" type="text" maxlength=7 placeholder="Enter fax Name Here.." name="fax" id="fax" onchange ="myfax('id17','fax')" required value="<?php echo $_POST['fax']?>"><p id="id17"></p>
+						</div>
+						<div class="col-sm-6 form-group">
+							<label>	FAX</label>
+							<input class="form-control" type="text" maxlength=7 placeholder="Enter company fax Name Here.." id="ofax" onchange="myfax('id18','ofax')" name="ofax" required value="<?php echo $_POST['ofax']?>"><p id="id18"></p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-6 form-group">
+							<label>	EMAIL ID</label>
+								<input class="form-control" type="email" maxlength=50 placeholder="Enter EMAIL ID Here.." name="emailid" id="emailid" onchange="email('id19','emailid')" required value="<?php echo $_POST['emailid']?>"><p id="id19"></p>
+						</div>
+						<div class="col-sm-6 form-group">
+							<label>	EMAIL ID</label>
+							<input class="form-control" type="email" maxlength=50 placeholder="Enter company EMAIL ID Here.." name="oemailid" id="oemailid" onchange="email('id22','oemailid')" required value="<?php echo $_POST['oemailid']?>"><p id="id22"></p>
+						</div>
+					</div>
+					<label for="comment">More about you:</label>
+					<textarea class="form-control" rows="5" id="more" name="yo"><?php echo $_POST['yo']?></textarea>
+					<div class="checkbox">
+						<label><input type="checkbox"> I AGREE </label>
+					</div>
+					<div class="row">
+						<button type="submit" name="submit" class="btn btn-info" onclick="return forall();"value="submit">Submit</button>				
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
 
 <?php
  	//close the connection

@@ -10,6 +10,7 @@ $(document).ready(function(){
 		error[2] = isempty('#fname','#id3');
 		error[3] = isempty('#mname','#id4');
 		error[4] = isempty('#lname','#id5');
+		error[41] = isempty('#employer','#id6');
 		error[5] = isempty('#phonenumber','#id7'); 
 		error[6] = isempty('#street','#id8'); 
 		error[7] = isempty('#ostreet','#id9'); 
@@ -47,6 +48,7 @@ $(document).ready(function(){
 		error[36] = isalpha('#ocity','#id11');
 		error[37] = isalpha('#state','#id12');
 		error[38] = isalpha('#ostate','#id13');
+		error[42] = isalpha('#employer','#id6');
 		//for street
 		error[39] = street('#street','#id8');
 		error[40] = street('#ostreet','#id9');

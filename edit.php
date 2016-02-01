@@ -145,12 +145,16 @@ if($username=$_SESSION["username"])
 				$employment = $_POST['employment'];
 
 			//for employer
-				if(!isset($_POST['employer']) || empty($_POST['employer']))
-				{
-					$errormessage .= "employer not set!<br>";
-				}
-				else 
-					$employer = $_POST['employer'];
+			if(!isset($_POST['employer']) || empty($_POST['employer']))
+			{
+				$errormessage .= "employer not set!<br>";
+			}
+			elseif(!preg_match("/^[a-zA-Z ]*$/",$_POST["employer"]))
+ 			{
+ 				$errormessage .= "EMPLOYER NAME CAN ONLY CONTAIN ALPHABETS A-Z or a-z,<br>";
+ 			} 
+			else 
+				$employer = $_POST['employer'];
 
 			//for phonenumber
 			if(!isset($_POST['phonenumber']) || empty($_POST['phonenumber']))
@@ -480,7 +484,7 @@ if($username=$_SESSION["username"])
 							</div>
 							<div class="col-sm-4 form-group">
 								<label>EMPLOYER (if employed)</label>
-								<input class="form-control" type="text" value="<?php echo $profile['employer'] ?>" name="employer">
+								<input class="form-control" type="text" id="employer" value="<?php echo $profile['employer'] ?>" name="employer">
 								<div id="id6"></div>
 							</div>
 							<div class="col-sm-4 form-group">
@@ -597,7 +601,7 @@ if($username=$_SESSION["username"])
 						<label for="comment">More about you:</label>
 						<textarea class="form-control" rows="5" id="more" name="yo" placeholder="update status!" ><?php echo $profile['yo']?></textarea>
 						<br>
-						 <button type="submit" class="btn btn-info" value="edit" id="edit" name="edit">EDIT</button>
+						 <button type="submit" class="btn btn-info" value="edit" id="edit" name="edit" >EDIT</button>
 								 		
 					</form>
 				</div>

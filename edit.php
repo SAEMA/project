@@ -30,21 +30,31 @@ if($username=$_SESSION["username"])
 			
 			$yo=$_POST['yo'];
 			
-
+			//for city
 			if(!isset($_POST['city']) || empty($_POST['city']))
 			{
 				$errormessage .= "city not set!<br>";
 			}
+			elseif(!preg_match("/^[a-zA-Z ]*$/",$_POST['city']))
+ 			{
+ 				$errormessage .= "CITY CAN ONLY CONTAIN ALPHABETS A-Z or a-z,<br>";
+ 			}
 			else 
 				$city = $_POST['city'];
 
+			//for office city
 			if(!isset($_POST['ocity']) || empty($_POST['ocity']))
 			{
 				$errormessage .= "office city not set!<br>";
 			}
+			elseif(!preg_match("/^[a-zA-Z ]*$/",$_POST["ocity"]))
+ 			{
+ 				$errormessage .= "OFFICE CITY CAN ONLY CONTAIN ALPHABETS A-Z or a-z,<br>";
+ 			}
 			else 
 				$ocity = $_POST['ocity'];
-				
+
+			//for firstname	
 			if(!isset($_POST['fname']) || empty($_POST['fname']))
 			{
 				$errormessage .= "first name not set!<br>";
@@ -56,6 +66,7 @@ if($username=$_SESSION["username"])
 			else 
 				$fname = $_POST['fname'];
 
+			//for middle name
 			if(!isset($_POST['mname']) || empty($_POST['mname']))
 			{
 				$errormessage .= "middle name not set!<br>";
@@ -64,10 +75,10 @@ if($username=$_SESSION["username"])
  			{
  				$errormessage .= "MIDDLE NAME CAN ONLY CONTAIN ALPHABETS A-Z or a-z,<br>";
  			}
-
 			else 
 				$mname = $_POST['mname'];
 
+			//for last name 
 			if(!isset($_POST['lname']) || empty($_POST['lname']))
 			{
 				$errormessage .= "last name not set!<br>";
@@ -79,7 +90,7 @@ if($username=$_SESSION["username"])
 			else 
 				$lname = $_POST['lname'];
 
-
+			//for username
 			if(!isset($_POST['username']) || empty($_POST['username']))
 			{
 				$errormessage .= "user name not set!<br>";
@@ -91,7 +102,7 @@ if($username=$_SESSION["username"])
 			else 
 				$username = $_POST['username'];
 
-
+			//for password
 			if(!isset($_POST['password']) || empty($_POST['password']))
 			{
 				$errormessage .= "password not set!<br>";
@@ -101,15 +112,14 @@ if($username=$_SESSION["username"])
 					if (strlen($_POST["password"]) < $max) 
 		 			{
 		 				$password=$_POST["password"];
-
 		 			} 
 		 			else
 		 			{
 		 				$errormessage .="PASSWORD TOO LONG,<br>";
 		 			}
-			
 		 		}
 
+		 	//for date of birth
 			if(!isset($_POST['dob']) || empty($_POST['dob']))
 			{
 				$errormessage .= "date of birth not set!<br>";
@@ -117,6 +127,7 @@ if($username=$_SESSION["username"])
 			else 
 				$dob = $_POST['dob'];
 
+			//for marital status
 			if(!isset($_POST['maritalstatus']) || empty($_POST['maritalstatus']))
 			{
 				$errormessage .= "maritalstatus not set!<br>";
@@ -125,7 +136,7 @@ if($username=$_SESSION["username"])
 				$maritalstatus = $_POST['maritalstatus'];
 
 			
-
+			//for employment
 			if(!isset($_POST['employment']) || empty($_POST['employment']))
 			{
 				$errormessage .= "employment not set!<br>";
@@ -133,6 +144,7 @@ if($username=$_SESSION["username"])
 			else 
 				$employment = $_POST['employment'];
 
+			//for employer
 				if(!isset($_POST['employer']) || empty($_POST['employer']))
 				{
 					$errormessage .= "employer not set!<br>";
@@ -140,18 +152,23 @@ if($username=$_SESSION["username"])
 				else 
 					$employer = $_POST['employer'];
 
-				if(!isset($_POST['phonenumber']) || empty($_POST['phonenumber']))
+			//for phonenumber
+			if(!isset($_POST['phonenumber']) || empty($_POST['phonenumber']))
 			{
 				$errormessage .= "phonenumber not set!<br>";
 			}
+			elseif(!preg_match("/^[0-9 ]*$/",$_POST['phonenumber']))
+ 			{
+ 				$errormessage .= "PHONE NUMBER CAN ONLY CONTAIN NUMBERS<br>";
+ 			}
 			elseif (strlen($_POST["phonenumber"]) == $maxm) 
 		 			{
 		 				$phonenumber=$_POST["phonenumber"];
-
 		 			}
 			else 
 				$phonenumber = $_POST['phonenumber'];
 
+			//for street
 			if(!isset($_POST['street']) || empty($_POST['street']))
 			{
 				$errormessage .= "street not set!<br>";
@@ -159,7 +176,7 @@ if($username=$_SESSION["username"])
 			else 
 				$street = $_POST['street'];
 
-
+			//for office street
 			if(!isset($_POST['ostreet']) || empty($_POST['ostreet']))
 			{
 				$errormessage .= "office street not set!<br>";
@@ -167,29 +184,39 @@ if($username=$_SESSION["username"])
 			else 
 				$ostreet = $_POST['ostreet'];
 
-
+			//for state 
 			if(!isset($_POST['state']) || empty($_POST['state']))
 			{
 				$errormessage .= " state not set!<br>";
 			}
+			elseif(!preg_match("/^[a-zA-Z ]*$/",$_POST["state"]))
+ 			{
+ 				$errormessage .= "STATE CAN ONLY CONTAIN ALPHABETS A-Z or a-z,<br>";
+ 			}
 			else 
 				$state= $_POST['state'];
 
+			//for office state
 			if(!isset($_POST['ostate']) || empty($_POST['ostate']))
 			{
 				$errormessage .= "office state not set!<br>";
 			}
+			elseif(!preg_match("/^[a-zA-Z ]*$/",$_POST["ostate"]))
+ 			{
+ 				$errormessage .= " OFFICE STATE CAN ONLY CONTAIN ALPHABETS A-Z or a-z,<br>";
+ 			}
 			else 
 				$ostate = $_POST['ostate'];
 
+			//for zip
 			if(!isset($_POST['zipp']) || empty($_POST['zipp']))
 			{
 				$errormessage .= "zip not set!<br>";
 			}
-
 			else 
 				$zipp = $_POST['zipp'];
 
+			//for office zip
 			if(!isset($_POST['ozipp']) || empty($_POST['ozipp']))
 			{
 				$errormessage .= "office zip not set!<br>";
@@ -197,10 +224,15 @@ if($username=$_SESSION["username"])
 			else 
 				$ozipp = $_POST['ozipp'];
 
+			//for mobile number
 			if(!isset($_POST['mobilenumber']) || empty($_POST['mobilenumber']))
 			{
 				$errormessage .= "mobilenumber not set!<br>";
 			}
+			elseif(!preg_match("/^[0-9 ]*$/",$_POST['mobilenumber']))
+ 			{
+ 				$errormessage .= "MOBILE NUMBER CAN ONLY CONTAIN NUMBERS<br>";
+ 			}
 			elseif (strlen($_POST["mobilenumber"]) == $maxm) 
  			{
  				$mobilenumber=$_POST["mobilenumber"];
@@ -209,11 +241,16 @@ if($username=$_SESSION["username"])
 			else 
 				$mobilenumber = $_POST['mobilenumber'];
 
+			//for office mobilenumber
 			if(!isset($_POST['omobilenumber']) || empty($_POST['omobilenumber']))
 			{
 				$errormessage .= "office mobilenumber not set!<br>";
-				$omobilenumber="";
+				
 			}
+			elseif(!preg_match("/^[0-9 ]*$/",$_POST['omobilenumber']))
+ 			{
+ 				$errormessage .= "OFFICE MOBILE NUMBER CAN ONLY CONTAIN NUMBERS<br>";
+ 			}
 			elseif (strlen($_POST["omobilenumber"]) == $maxm) 
  			{
  				$omobilenumber=$_POST["omobilenumber"];
@@ -222,30 +259,39 @@ if($username=$_SESSION["username"])
 			else 
 				$omobilenumber = $_POST['omobilenumber'];
 
+			//for landlinenumber
 			if(!isset($_POST['landlinenumber']) || empty($_POST['landlinenumber']))
 			{
 				$errormessage .= "landlinenumber not set!";
 			}
+			elseif(!preg_match("/^[0-9 ]*$/",$_POST['landlinenumber']))
+ 			{
+ 				$errormessage .= "LANDLINE NUMBER CAN ONLY CONTAIN NUMBERS<br>";
+ 			}
 			elseif (strlen($_POST["landlinenumber"]) == $maxm) 
  			{
  				$landlinenumber=$_POST["landlinenumber"];
-
  			}
 			else 
 				$landlinenumber = $_POST['landlinenumber'];
 
+			//for office landline number
 			if(!isset($_POST['olandlinenumber']) || empty($_POST['olandlinenumber']))
 			{
 				$errormessage .= "office landlinenumber not set!<br>";
 			}
+			elseif(!preg_match("/^[0-9 ]*$/",$_POST['olandlinenumber']))
+ 			{
+ 				$errormessage .= "OFFICE LANDLINE NUMBER CAN ONLY CONTAIN NUMBERS<br>";
+ 			}
 			elseif (strlen($_POST["olandlinenumber"]) == $maxm) 
  			{
  				$olandlinenumber=$_POST["olandlinenumber"];
-
  			}
 			else 
 				$olandlinenumber = $_POST['olandlinenumber'];
 
+			//fax
 			if(!isset($_POST['fax']) || empty($_POST['fax']))
 			{
 				$errormessage .= "fax not set!";
@@ -257,6 +303,7 @@ if($username=$_SESSION["username"])
 			else 
 				$fax = $_POST['fax'];
 
+			//for office fax
 			if(!isset($_POST['ofax']) || empty($_POST['ofax']))
 			{
 				$errormessage .= "office fax not set!";
@@ -268,26 +315,31 @@ if($username=$_SESSION["username"])
 			else 
 				$ofax = $_POST['ofax'];
 
+			//for email id
 			if(!isset($_POST['emailid']) || empty($_POST['emailid']))
 			{
 				$errormessage .= "emailid not set!";
 			}
 			elseif(!preg_match('/^[a-z0-9_-]+@[a-z0-9._-]+\.[a-z]+$/i', $_POST['emailid']))
  			{
- 				$errormessage .= "<br> OFFICE FAX MUST CONTAIN ONLY NUMBERS</br>";
+ 				$errormessage .= "<br> EMAIL ID MUST CONTAIN ONLY NUMBERS</br>";
  			}
 			else 
 				$emailid = $_POST['emailid'];
 
+			//for office email id
 			if(!isset($_POST['oemailid']) || empty($_POST['oemailid']))
 			{
 				$errormessage .= "office emailid not set!<br>";
 			}
+			elseif(!preg_match('/^[a-z0-9_-]+@[a-z0-9._-]+\.[a-z]+$/i', $_POST['oemailid']))
+ 			{
+ 				$errormessage .= "<br> OFFICE EMAIL ID MUST CONTAIN ONLY NUMBERS</br>";
+ 			}
 			else 
 				$oemailid = $_POST['oemailid'];
 					
-				//for photo
- 				
+			//for photo 				
  			$target_dir = "/var/www/html/assignment/mindfire/img/";
 			$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 			$fileToUpload=basename($_FILES["fileToUpload"]["name"]);				
@@ -356,18 +408,20 @@ if($username=$_SESSION["username"])
 			</div>
 		</div>
 		<div class="col-lg-12 well">						
-			<form action="edit.php" method="post"  enctype="multipart/form-data">												
+			<form action="edit.php" method="post"  enctype="multipart/form-data">											
 				<img id="profilePic"src="img/<?php echo  $profile['fileToUpload']; ?>" >
 					<input type="file" name="fileToUpload" id="fileToUpload" ><br>
 						<hr>
 						<div class="row">
 							<div class="col-sm-4 form-group">
 								<label>USERNAME</label>
-								<input class="form-control" type="text" name="username" value="<?php echo $profile['username'] ?>" >
+								<input class="form-control" type="text" id="username" name="username" value="<?php echo $profile['username'] ?>" >
+								<div id="id1"></div>
 							</div>
 							<div class="col-sm-4 form-group">
 								<label>PASSWORD</label>
-								<input class="form-control" type="password" name="password" value="<?php echo $profile['password'] ?>" >
+								<input class="form-control" type="password" id="password" name="password" value="<?php echo $profile['password'] ?>" >
+								<div id="id2"></div>
 							</div>
 							<div class="col-sm-4 form-group">													
 							</div>
@@ -375,15 +429,18 @@ if($username=$_SESSION["username"])
 						<div class="row">
 							<div class="col-sm-4 form-group">
 								<label>FIRST NAME</label>
-								<input class="form-control" type="text" name="fname" value="<?php echo $profile['fname'] ?>" >
+								<input class="form-control" type="text" name="fname" id="fname" value="<?php echo $profile['fname'] ?>" >
+								<div id="id3"></div>
 							</div>					
 							<div class="col-sm-4 form-group">
 								<label>MIDDLE NAME</label>
-								<input class="form-control" type="text" name="mname" value="<?php echo $profile['mname'] ?>">
+								<input class="form-control" type="text" name="mname"id="mname" value="<?php echo $profile['mname'] ?>">
+								<div id="id4"></div>
 							</div>						
 							<div class="col-sm-4 form-group">
 								<label>LAST NAME</label>
-								<input class="form-control" type="text" name="lname" value="<?php echo $profile['lname'] ?>">
+								<input class="form-control" type="text" name="lname" id="lname" value="<?php echo $profile['lname'] ?>">
+								<div id="id5"></div>
 							</div>
 						</div>
 						<div class="row">
@@ -424,10 +481,12 @@ if($username=$_SESSION["username"])
 							<div class="col-sm-4 form-group">
 								<label>EMPLOYER (if employed)</label>
 								<input class="form-control" type="text" value="<?php echo $profile['employer'] ?>" name="employer">
+								<div id="id6"></div>
 							</div>
 							<div class="col-sm-4 form-group">
 								<label>PHONE NUMBER</label>
-								<input class="form-control" type="text" value="<?php echo $profile['phonenumber'] ?>" name="phonenumber">
+								<input class="form-control" type="text" id="phonenumber" value="<?php echo $profile['phonenumber'] ?>" name="phonenumber">
+								<div id="id7"></div>
 							</div>
 						</div>
 						<hr>
@@ -442,87 +501,103 @@ if($username=$_SESSION["username"])
 						<div class="row">
 							<div class="col-sm-6 form-group">
 								<label>	STREET</label>
-									<input class="form-control" type="text" value="<?php echo $profile['street'] ?>" name="street">
+									<input class="form-control" type="text" id="street" value="<?php echo $profile['street'] ?>" name="street">
+									<div id="id8"></div>
 							</div>
 							<div class="col-sm-6 form-group">
 								<label>	STREET</label>
-									<input class="form-control" type="text" value="<?php echo $profile['ostreet'] ?>" name="ostreet">
+									<input class="form-control" type="text" id="ostreet" value="<?php echo $profile['ostreet'] ?>" name="ostreet">
+									<div id="id9"></div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6 form-group">
 								<label>	CITY</label>
-								<input class="form-control" type="text" value="<?php echo $profile['city'] ?>" name="city">
+								<input class="form-control" type="text" id="city" value="<?php echo $profile['city'] ?>" name="city">
+								<div id="id10"></div>
 							</div>
 							<div class="col-sm-6 form-group">
 								<label>	CITY</label>
-								<input class="form-control" type="text" value="<?php echo $profile['ocity'] ?>" name="ocity">
+								<input class="form-control" type="text" id="ocity" value="<?php echo $profile['ocity'] ?>" name="ocity">
+								<div id="id11"></div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6 form-group">
 								<label>	STATE</label>
-								<input class="form-control" type="text" value="<?php echo $profile['state'] ?>" name="state">
+								<input class="form-control" type="text" id="state" value="<?php echo $profile['state'] ?>" name="state">
+								<div id="id12"></div>
 							</div>
 							<div class="col-sm-6 form-group">
 								<label>	STATE</label>
-								<input class="form-control" type="text" value="<?php echo $profile['ostate'] ?>" name="ostate">
+								<input class="form-control" type="text" id="ostate" value="<?php echo $profile['ostate'] ?>" name="ostate">
+								<div id="id13"></div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6 form-group">
 								<label>	ZIP</label>
-								<input class="form-control" type="number" value="<?php echo $profile['zipp'] ?>" name="zipp">
+								<input class="form-control" type="number" id="zipp" value="<?php echo $profile['zipp'] ?>" name="zipp">
+								<div id="id14"></div>
 							</div>
 							<div class="col-sm-6 form-group">
 								<label>	ZIP</label>
-								<input class="form-control" type="number" value="<?php echo $profile['ozipp'] ?>" name="ozipp">
+								<input class="form-control" type="number" id="ozipp" value="<?php echo $profile['ozipp'] ?>" name="ozipp">
+								<div id="id15"></div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6 form-group">
 								<label>	MOBILE NUMBER</label>
-								<input class="form-control" type="text" value="<?php echo $profile['mobilenumber'] ?>" name="mobilenumber">
+								<input class="form-control" type="text" id="mobilenumber" value="<?php echo $profile['mobilenumber'] ?>" name="mobilenumber">
+								<div id="id16"></div>
 							</div>
 							<div class="col-sm-6 form-group">
 								<label>	MOBILE NUMBER</label>
-								<input class="form-control" type="text" value="<?php echo $profile['omobilenumber'] ?>" name="omobilenumber">
+								<input class="form-control" type="text" id="omobilenumber" value="<?php echo $profile['omobilenumber'] ?>" name="omobilenumber">
+								<div id="id17"></div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6 form-group">
 								<label>	LANDLINE NUMBER</label>
-								<input class="form-control" type="text" value="<?php echo $profile['landlinenumber'] ?>" name="landlinenumber">
+								<input class="form-control" type="text" id="landlinenumber" value="<?php echo $profile['landlinenumber'] ?>" name="landlinenumber">
+								<div id="id18"></div>
 							</div>
 							<div class="col-sm-6 form-group">
 								<label>	LANDLINE NUMBER</label>
-								<input class="form-control" type="text" value="<?php echo $profile['olandlinenumber'] ?>" name="olandlinenumber">
+								<input class="form-control" type="text" id="olandlinenumber" value="<?php echo $profile['olandlinenumber'] ?>" name="olandlinenumber">
+								<div id="id19"></div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6 form-group">
 								<label>	FAX</label>
-								<input class="form-control" type="text" value="<?php echo $profile['fax'] ?>" name="fax">
+								<input class="form-control" type="text"id="fax" value="<?php echo $profile['fax'] ?>" name="fax">
+								<div id="id20"></div>
 							</div>
 							<div class="col-sm-6 form-group">
 								<label>	FAX</label>
-								<input class="form-control" type="text" value="<?php echo $profile['ofax'] ?>" name="ofax">
+								<input class="form-control" type="text" id="ofax" value="<?php echo $profile['ofax'] ?>" name="ofax">
+								<div id="id21"></div>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-sm-6 form-group">
 								<label>	EMAIL ID</label>
-								<input class="form-control" type="email" value="<?php echo $profile['emailid'] ?>" name="emailid">
+								<input class="form-control" type="email" id="emailid" value="<?php echo $profile['emailid'] ?>" name="emailid">
+								<div id="id22"></div>
 							</div>
 							<div class="col-sm-6 form-group">
 								<label>	EMAIL ID</label>
-								<input class="form-control" type="email" value="<?php echo $profile['oemailid'] ?>" name="oemailid">
+								<input class="form-control" type="email" id="oemailid" value="<?php echo $profile['oemailid'] ?>" name="oemailid">
+								<div id="id23"></div>
 							</div>
 						</div>
 						<label for="comment">More about you:</label>
 						<textarea class="form-control" rows="5" id="more" name="yo" placeholder="update status!" ><?php echo $profile['yo']?></textarea>
 						<br>
-						 <button type="submit" class="btn btn-info" value="edit" name="edit">EDIT</button>
+						 <button type="submit" class="btn btn-info" value="edit" id="edit" name="edit">EDIT</button>
 								 		
 					</form>
 				</div>

@@ -27,244 +27,290 @@
 			$fileToUpload=basename($_FILES["fileToUpload"]["name"]);
 			move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
 
-
+			//for username
  			if(!isset($_POST["username"]) || empty($_POST["username"]))
  			{
- 				$errormessage .= "USERNAME NOT SET,";
+ 				$errormessage .= "USERNAME NOT SET,<br>";
  			}
  			elseif(!preg_match("/^[a-zA-Z ]*$/",$_POST["username"]))
  			{
- 				$errormessage .= "USERNAME CAN ONLY CONTAIN ALPHABETS A-Z or a-z,";
+ 				$errormessage .= "USERNAME CAN ONLY CONTAIN ALPHABETS A-Z or a-z,<br>";
  			}
  			else 
  				$username=$_POST["username"];
  			
+ 			//for password
  			if(!isset($_POST["password"]) || empty($_POST["password"]))
  			{
- 				$errormessage .= "PASSWORD MUST BE FILLED,";
+ 				$errormessage .= "PASSWORD MUST BE FILLED,<br>";
  			}
-
  			if (strlen($_POST["password"]) < $max) 
  			{
  				$password=$_POST["password"];
 
  			} else {
- 				$errormessage .="PASSWORD TOO LONG,";
+ 				$errormessage .="PASSWORD TOO LONG,<br>";
  			}
 
+ 			//for reetyped password
  			if(isset($_POST["retypepassword"]) || !empty($_POST["retypepassword"]))
  			{				
  				if($_POST["retypepassword"]===$password)
  				{
  					$retypepassword=$_POST["retypepassword"]; 
-					//echo "yay";
  				} else {
- 					$errormessage .="RETYPED PASSWORD IS WRONG!,";
+ 					$errormessage .="RETYPED PASSWORD IS WRONG!,<br>";
  				}
  			}
  			else 
- 				$errormessage .="RETYPE PASSWORD MUST BE FILLED,";
+ 				$errormessage .="RETYPE PASSWORD MUST BE FILLED,<br>";
 
-
-
+ 			//for firstname
  			if(!isset($_POST["fname"]) || empty($_POST["fname"]))
  			{
- 				$errormessage .= "FIRST NAME MUST BE FILLED,";
+ 				$errormessage .= "FIRST NAME MUST BE FILLED,<br>";
  			}
  			elseif(!preg_match("/^[a-zA-Z ]*$/",$_POST["fname"]))
  			{
- 				$errormessage .= "FIRSTNAME CAN ONLY CONTAIN ALPHABETS A-Z or a-z,";
+ 				$errormessage .= "FIRSTNAME CAN ONLY CONTAIN ALPHABETS A-Z or a-z,<br>";
  			}
  			else 
  				$fname=$_POST["fname"];
 
-
+ 			//for middle name
  			if(!isset($_POST["mname"]) || empty($_POST["mname"]))
  			{
- 				$errormessage .= "MIDDLE NAME MUST BE FILLED,";
+ 				$errormessage .= "MIDDLE NAME MUST BE FILLED,<br>";
  			}
  			elseif(!preg_match("/^[a-zA-Z ]*$/",$_POST["mname"]))
  			{
- 				$errormessage .= "MIDDLE NAME CAN ONLY CONTAIN ALPHABETS A-Z or a-z,";
+ 				$errormessage .= "MIDDLE NAME CAN ONLY CONTAIN ALPHABETS A-Z or a-z,<br>";
  			}
  			else 
  				$mname=$_POST["mname"];
 
-
+ 			//for last name
  			if(!isset($_POST["lname"]) || empty($_POST["lname"]))
  			{
- 				$errormessage .= "LAST NAME MUST BE FILLED,";
+ 				$errormessage .= "LAST NAME MUST BE FILLED,<br>";
  			}
  			elseif(!preg_match("/^[a-zA-Z ]*$/",$_POST["lname"]))
  			{
- 				$errormessage .= "LAST NAME CAN ONLY CONTAIN ALPHABETS A-Z or a-z,";
+ 				$errormessage .= "LAST NAME CAN ONLY CONTAIN ALPHABETS A-Z or a-z,<br>";
  			}
  			else 
  				$lname=$_POST["lname"];
- 			
+
+ 			//for gender
  			if(!isset($_POST["options"]) || empty($_POST["options"]))
  			{
- 				$errormessage .= "GENDERMUST BE CHECKED,";
-
+ 				$errormessage .= "GENDERMUST BE CHECKED,<br>";
  			}
  			else
  				$option=$_POST["options"];
 
+ 			//for date of birth
  			if(!isset($_POST["dob"]) || empty($_POST["dob"]))
  			{
- 				$errormessage .= "DATE OF BIRTH MUST BE FILLED,";
+ 				$errormessage .= "DATE OF BIRTH MUST BE FILLED,<br>";
  			}
  			else
  				$dob=$_POST["dob"];
 
-
+ 			//for marital status
  			$maritalstatus=$_POST["maritalstatus"];
  			$employment=$_POST["employment"];
  			$employer=$_POST["employer"];
 
-
+ 			//for phonenumber
  			if(!isset($_POST["phonenumber"]) || empty($_POST["phonenumber"]))
  			{
- 				$errormessage .= "PHONE NUMBER MUST BE FILLED,";
+ 				$errormessage .= "PHONE NUMBER MUST BE FILLED,<br>";
+ 			}
+ 			elseif(!preg_match("/^[0-9 ]*$/",$_POST['phonenumber']))
+ 			{
+ 				$errormessage .= "PHONE NUMBER CAN ONLY CONTAIN NUMBERS<br>";
  			}
 			elseif (strlen($_POST["phonenumber"]) == $maxm) 
-		 			{
-		 				$phonenumber=$_POST["phonenumber"];
-
-		 			}
- 			else
- 				
+		 	{
+				$phonenumber=$_POST["phonenumber"];
+			}
+ 			else 				
  				$errormessage .= "<br>PHONE NUMBER MUST BE 10 NUMBERS</br>";
 
+ 			//for street
  			if(!isset($_POST["street"]) || empty($_POST["street"]))
  			{
- 				$errormessage .= "STREET MUST BE FILLED,";
+ 				$errormessage .= "STREET MUST BE FILLED,<br>";
+ 			}
+ 			elseif(!preg_match("/^[0-9A-Za-z ]*$/",$_POST['street']))
+ 			{
+ 				$errormessage .= "STREET CAN HAVE ONLY NUMBERS AND ALPHABETS<br>";
  			}
  			else
  				$street=$_POST["street"];
 
+ 			//for office street
  			if(!isset($_POST["ostreet"]) || empty($_POST["ostreet"]))
  			{
- 				$errormessage .= "OFFICE STREET MUST BE FILLED,";
+ 				$errormessage .= "OFFICE STREET MUST BE FILLED,<br>";
+ 			}
+ 			elseif(!preg_match("/^[0-9A-Za-z ]*$/",$_POST['ostreet']))
+ 			{
+ 				$errormessage .= " OFIICE STREET CAN HAVE ONLY NUMBERS AND ALPHABETS<br>";
  			}
  			else
  				$ostreet=$_POST["ostreet"]; 
 
+ 			//for city
  			if(!isset($_POST["city"]) || empty($_POST["city"]))
  			{
  				$errormessage .= "CITY MUST BE FILLED,";
  			}
+ 			elseif(!preg_match("/^[a-zA-Z ]*$/",$_POST['city']))
+ 			{
+ 				$errormessage .= "CITY CAN HAVE ONLY ALPHABETS<br>";
+ 			}
  			else
  				$city=$_POST["city"]; 	
 
-
+ 			//for office city
  			if(!isset($_POST["ocity"]) || empty($_POST["ocity"]))
  			{
  				$errormessage .= "OFFICE CITY MUST BE FILLED,";
  			}
+ 			elseif(!preg_match("/^[a-zA-Z ]*$/",$_POST['ocity']))
+ 			{
+ 				$errormessage .= "OFFICE CITY CAN HAVE ONLY ALPHABETS<br>";
+ 			}
  			else
  				$ocity=$_POST["ocity"]; 			
 
-
+ 			//for state
  			if(!isset($_POST["state"]) || empty($_POST["state"]))
  			{
  				$errormessage .= " STATE MUST BE FILLED,";
  			}
+ 			elseif(!preg_match("/^[a-zA-Z ]*$/",$_POST['state']))
+ 			{
+ 				$errormessage .= "STATE CAN HAVE ONLY ALPHABETS<br>";
+ 			}
  			else
  				$state=$_POST["state"]; 	
 
-
+ 			//for office state
  			if(!isset($_POST["ostate"]) || empty($_POST["ostate"]))
  			{
  				$errormessage .= "OFFICE STATE MUST BE FILLED,";
  			}
+ 			elseif(!preg_match("/^[a-zA-Z ]*$/",$_POST['ostate']))
+ 			{
+ 				$errormessage .= "OFFICE STATE CAN HAVE ONLY ALPHABETS<br>";
+ 			}
  			else
- 				$ostate=$_POST["ostate"]; 
+ 				$ostate=$_POST["ostate"];
 
+ 			//for zip
  			if(!isset($_POST["zipp"]) || empty($_POST["zipp"]))
  			{
  				$errormessage .= " ZIP MUST BE FILLED,";
  			}
+ 			elseif(!preg_match("/^[0-9 ]*$/",$_POST['zipp']))
+ 			{
+ 				$errormessage .= "ZIP CAN ONLY BE NUMBERS<br>";
+ 			}
  			else
  				$zip=$_POST["zipp"]; 	
 
-
+ 			//for office zip
  			if(!isset($_POST["ozipp"]) || empty($_POST["ozipp"]))
  			{
  				$errormessage .= "OFFICE ZIP MUST BE FILLED,";
  			}
+ 			elseif(!preg_match("/^[0-9 ]*$/",$_POST['ozipp']))
+ 			{
+ 				$errormessage .= " OFFICE ZIP CAN ONLY BE NUMBERS<br>";
+ 			}
  			else
  				$ozip=$_POST["ozipp"]; 
 
-
+ 			//for mobile number
  			if(!isset($_POST["mobilenumber"]) || empty($_POST["mobilenumber"]))
  			{
  				$errormessage .= " MOBILE NUMBER MUST BE FILLED,";
  			}
+ 			elseif(!preg_match("/^[0-9 ]*$/",$_POST['mobilenumber']))
+ 			{
+ 				$errormessage .= "MOBILE NUMBER CAN ONLY CONTAIN NUMBERS<br>";
+ 			}
  			elseif (strlen($_POST["mobilenumber"]) == $maxm) 
  			{
  				$mobilenumber=$_POST["mobilenumber"];
-
  			}
- 			else
- 					
+ 			else 					
  				$errormessage .= "<br> MOBILE NUMBER MUST BE 10 NUMBERS</br>";
 
+ 			//for office mobilenumber
  			if(!isset($_POST["omobilenumber"]) || empty($_POST["omobilenumber"]))
  			{
  				$errormessage .= "OFFICE MOBILE NUMBER MUST BE FILLED,";
  			}
+ 			elseif(!preg_match("/^[0-9 ]*$/",$_POST['omobilenumber']))
+ 			{
+ 				$errormessage .= "OFFICE MOBILE NUMBER CAN ONLY CONTAIN NUMBERS<br>";
+ 			}
  			elseif (strlen($_POST["omobilenumber"]) == $maxm) 
  			{
  				$omobilenumber=$_POST["omobilenumber"];
-
  			}
- 			else
- 					
+ 			else 					
  				$errormessage .= "<br>OFFICE MOBILE NUMBER MUST BE 10 NUMBERS</br>";
 
+ 			//for landline number
  			if(!isset($_POST["landlinenumber"]) || empty($_POST["landlinenumber"]))
  			{
  				$errormessage .= " LANDLINE NUMBER MUST BE FILLED,";
  			}
+ 			elseif(!preg_match("/^[0-9 ]*$/",$_POST['landlinenumber']))
+ 			{
+ 				$errormessage .= "LANDLINE NUMBER CAN ONLY CONTAIN NUMBERS<br>";
+ 			}
  			elseif (strlen($_POST["landlinenumber"]) == $maxm) 
  			{
  				$landlinenumber=$_POST["landlinenumber"];
-
  			}
- 			else
- 					
+ 			else 					
  				$errormessage .= "<br>LANDLINE NUMBER MUST BE 10 NUMBERS</br>";
 
+ 			//for office landline number
  			if(!isset($_POST["olandlinenumber"]) || empty($_POST["olandlinenumber"]))
  			{
  				$errormessage .= "OFFICE LANDLINE NUMBER MUST BE FILLED,";
  			}
+ 			elseif(!preg_match("/^[0-9 ]*$/",$_POST['olandlinenumber']))
+ 			{
+ 				$errormessage .= "OFFICE LANDLINE NUMBER CAN ONLY CONTAIN NUMBERS<br>";
+ 			}
  			elseif (strlen($_POST["olandlinenumber"]) == $maxm) 
  			{
  				$olandlinenumber=$_POST["olandlinenumber"];
-
  			}
  			else
- 					
  				$errormessage .= "<br>OFFICE LANDLINE NUMBER MUST BE 10 NUMBERS</br>";
 
-
+ 			//FOR FAX
  			if(!isset($_POST["fax"]) || empty($_POST["fax"]))
  			{
  				$errormessage .= " FAX NUMBER MUST BE FILLED,";
  			}
-
  			elseif(!preg_match("/^[0-9 ]*$/",$_POST["fax"]))
  			{
  				$errormessage .= "<br>FAX MUST CONTAIN ONLY NUMBERS</br>";
  			}
-
-
  			else
  				$fax=$_POST["fax"]; 	
 
-
+ 			//FOR OFFICE FAX
  			if(!isset($_POST["ofax"]) || empty($_POST["ofax"]))
  			{
  				$errormessage .= "OFFICE FAX NUMBER MUST BE FILLED,";
@@ -276,21 +322,31 @@
  			else
  				$ofax=$_POST["ofax"];
 
+ 			//for email id
  			if(!isset($_POST["emailid"]) || empty($_POST["emailid"]))
  			{
  				$errormessage .= " EMAIL ID MUST BE FILLED,";
  			}
+ 			elseif(!preg_match('/^[a-z0-9_-]+@[a-z0-9._-]+\.[a-z]+$/i', $_POST['emailid']))
+ 			{
+ 				$errormessage .= "<br> EMAIL ID MUST BE OF THE CORRECT FORMAT!</br>";
+ 			}
  			else
  				$emailid=$_POST["emailid"]; 	
 
-
+ 			//for office email id
  			if(!isset($_POST["oemailid"]) || empty($_POST["oemailid"]))
  			{
  				$errormessage .= "OFFICE EMAIL ID MUST BE FILLED,";
  			}
+ 			elseif(!preg_match('/^[a-z0-9_-]+@[a-z0-9._-]+\.[a-z]+$/i', $_POST['oemailid']))
+ 			{
+ 				$errormessage .= "<br> OFFICE EMAIL ID MUST BE OF THE CORRECT FORMAT!</br>";
+ 			}
  			else
  				$oemailid=$_POST["oemailid"];
 
+ 			//for about you
  			$yo=$_POST["yo"];
 
  			//display errors if any
@@ -299,7 +355,6 @@
 
  				$query = "INSERT INTO registration1 (username,password,fname,mname,lname,options,dob,maritalstatus,employment,employer,phonenumber,street,ostreet,city,ocity,state,ostate,zipp,ozipp,mobilenumber,omobilenumber,landlinenumber,olandlinenumber,fax,ofax,emailid,oemailid,yo,fileToUpload) 
  				VALUES ('$username','$password','$fname','$mname','$lname','$option','$dob','$maritalstatus','$employment','$employer','$phonenumber','$street','$ostreet','$city','$ocity','$state','$ostate','$zip','$ozip','$mobilenumber','$omobilenumber','$landlinenumber','$olandlinenumber','$fax','$ofax','$emailid','$oemailid','$yo','$fileToUpload')";
-				//$result = mysqli_query($connection,$query);
  				if (!mysqli_query($connection,$query))
  				{
  					die("database connection failed " . mysqli_error($connection));
@@ -325,7 +380,7 @@
 
 				<h1 class="well">REGISTRATION FORM</h1>
 
-		<!-- This div is used to display messages to the user -->
+				<!-- This div is used to display messages to the user -->
 				<div class="row">
 					<div class="col-md-12">
 						<div id="message" class="jumbotron">

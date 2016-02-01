@@ -2,58 +2,69 @@ $(document).ready(function(){
 	
 	$("#edit").click(function(e){
 		var check = 0;
+		//array declaration
+		var error = new Array();
 
-		isempty('#username','#id1'); 
-		isempty('#password','#id2');
-		isempty('#fname','#id3');
-		isempty('#mname','#id4');
-		isempty('#lname','#id5');
-		isempty('#phonenumber','#id7'); 
-		isempty('#street','#id8'); 
-		isempty('#ostreet','#id9'); 
-		isempty('#city','#id10');
-		isempty('#ocity','#id11');
-		isempty('#state','#id12');
-		isempty('#ostate','#id13');
-		isempty('#zipp','#id14');
-		isempty('#ozipp','#id15');
-		isempty('#mobilenumber','#id16');  
-		isempty('#omobilenumber','#id17');  
-		isempty('#landlinenumber','#id18');  
-		isempty('#olandlinenumber','#id19');  
-		isempty('#fax','#id20');
-		isempty('#ofax','#id21');
-		isempty('#emailid','#id22'); 
-		isempty('#oemailid','#id23');
+		error[0] = isempty('#username','#id1'); 
+		error[1] = isempty('#password','#id2');
+		error[2] = isempty('#fname','#id3');
+		error[3] = isempty('#mname','#id4');
+		error[4] = isempty('#lname','#id5');
+		error[5] = isempty('#phonenumber','#id7'); 
+		error[6] = isempty('#street','#id8'); 
+		error[7] = isempty('#ostreet','#id9'); 
+		error[8] = isempty('#city','#id10');
+		error[9] = isempty('#ocity','#id11');
+		error[10] = isempty('#state','#id12');
+		error[11] = isempty('#ostate','#id13');
+		error[12] = isempty('#zipp','#id14');
+		error[13] = isempty('#ozipp','#id15');
+		error[14] = isempty('#mobilenumber','#id16');  
+		error[15] = isempty('#omobilenumber','#id17');  
+		error[16] = isempty('#landlinenumber','#id18');  
+		error[17] = isempty('#olandlinenumber','#id19');  
+		error[18] = isempty('#fax','#id20');
+		error[19] = isempty('#ofax','#id21');
+		error[20] = isempty('#emailid','#id22'); 
+		error[21] = isempty('#oemailid','#id23');
 		//for numbers only
-		numbers('#mobilenumber','#id16');
-		numbers('#omobilenumber','#id17');
-		numbers('#landlinenumber','#id18');
-		numbers('#olandlinenumber','#id19');
-		numbers('#phonenumber','#id7');
+		error[22] = numbers('#mobilenumber','#id16');
+		error[23] = numbers('#omobilenumber','#id17');
+		error[24] = numbers('#landlinenumber','#id18');
+		error[25] = numbers('#olandlinenumber','#id19');
+		error[26] = numbers('#phonenumber','#id7');
 		//for length
-		checklength('#phonenumber','#id7');
-		checklength('#mobilenumber','#id16');
-		checklength('#omobilenumber','#id17');
-		checklength('#landlinenumber','#id18');
-		checklength('#olandlinenumber','#id19');
+		error[27] = checklength('#phonenumber','#id7');
+		error[28] = checklength('#mobilenumber','#id16');
+		error[29] = checklength('#omobilenumber','#id17');
+		error[30] = checklength('#landlinenumber','#id18');
+		error[31] = checklength('#olandlinenumber','#id19');
 		//for alpha
-		isalpha('#fname','#id3');
-		isalpha('#mname','#id4');
-		isalpha('#lname','#id5');
-		isalpha('#city','#id10');
-		isalpha('#ocity','#id11');
-		isalpha('#state','#id12');
-		isalpha('#ostate','#id13');
+		error[32] = isalpha('#fname','#id3');
+		error[33] = isalpha('#mname','#id4');
+		error[34] = isalpha('#lname','#id5');
+		error[35] = isalpha('#city','#id10');
+		error[36] = isalpha('#ocity','#id11');
+		error[37] = isalpha('#state','#id12');
+		error[38] = isalpha('#ostate','#id13');
 		//for street
-		street('#street','#id8');
-		street('#ostreet','#id9');
-		if(check == 1)
+		error[39] = street('#street','#id8');
+		error[40] = street('#ostreet','#id9');
+		//checking on client side
+		for(var i=0 ; i<error.length ;i++)
+		{
+			if(error[i] === false)
+			{
+				check++;
+			}
+		}
+		if(check !== 0)
 		{
 		return false;
 	}
 	else 
 		return true; 
+	
 	});
 });
 
@@ -70,7 +81,10 @@ $(document).ready(function(){
  			 				'</div>';
 				$(id).html(error);
 				$(name).focus();
+				return false;
 			}
+			else 
+				return true;
 		}
 		function isalpha(name,id){
 			var rexp = /^[A-Za-z]+$/;
@@ -86,7 +100,10 @@ $(document).ready(function(){
  			 				'</div>';
  			 	$(id).html(error);
 				$(name).focus();
+			return false;
 			}
+			else 
+				return true;
 		}
 		function numbers(name,id){
 			
@@ -101,7 +118,10 @@ $(document).ready(function(){
  			 				'</div>';
  			 	$(id).html(error);
 				$(name).focus();
+			return false;
 			}
+			else 
+				return true;
 
 		}		
 		function street(name,id){
@@ -119,7 +139,10 @@ $(document).ready(function(){
  			 	$(id).html(error);
 				$(name).focus();
 
+			return false;
 			}
+			else 
+				return true;
 
 		}	
 		function checklength(name,id){
@@ -134,7 +157,10 @@ $(document).ready(function(){
  			 				'</div>';
  			 	$(id).html(error);
 				$(name).focus();
+			return false;
 			}
+			else 
+				return true;
 		}	
 
 

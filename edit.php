@@ -413,7 +413,8 @@ if($username=$_SESSION["username"])
 		</div>
 		<div class="col-lg-12 well">						
 			<form action="edit.php" method="post"  enctype="multipart/form-data">											
-				<img id="profilePic"src="img/<?php echo  $profile['fileToUpload']; ?>" >
+				<img id="image"src="img/<?php echo  $profile['fileToUpload']; ?>" width="200" height="200">
+				<!--<img id="image" src="" alt="image preview here" height="150" width="150" />-->
 					<input type="file" name="fileToUpload" id="fileToUpload" ><br>
 						<hr>
 						<div class="row">

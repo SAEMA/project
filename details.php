@@ -27,6 +27,14 @@
 			$fileToUpload=basename($_FILES["fileToUpload"]["name"]);
 			move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
 
+			//validation for image
+			if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+							&& $imageFileType != "gif" && $_FILES["fileToUpload"]["size"] !== 0)
+			{
+
+				$errormessage .= "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+			}
+
 			//for username
  			if(!isset($_POST["username"]) || empty($_POST["username"]))
  			{
@@ -415,6 +423,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<input type="file" name="fileToUpload" id="fileToUpload"><br>
+							 <img id="image" src="" alt="image preview here" height="150" width="150" />
 									<!--<input type="submit" value="Upload Image" name="submit"> -->
 						</div>	
 					</div>

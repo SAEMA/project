@@ -92,7 +92,6 @@ $(document).ready(function(){
 			var rexp = /^[A-Za-z]+$/;
 			var temp = $(name).val();
 			//validation for only alphabets
-			console.log(temp.match(rexp));
 			if(!temp.match(rexp)){
 				check = 1;
 				var error = '<div class="alert-danger" role="alert">' +

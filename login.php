@@ -1,41 +1,12 @@
 <?php  
 	require 'hr.php';
-?>
-
-<?php 
-	session_start();
-	require('dbinfo.php');
-
-	$db=mysqli_connect($dbhost,$dbuser,$dbpass,$dbname);
-
-
-	if(!$db)
-	{
-		die("no db connection");
-	}
-
-	if($_POST['login'])
-	{
-
-	$username=$_POST['username'];
-	$password=$_POST['password'];
-	$query2="SELECT * FROM registration1 WHERE username='$username' AND password='$password'";
-	$result=mysqli_query($db,$query2);
-	if($result && $rows=mysqli_fetch_assoc($result))
-	{
-
-		$_SESSION["username"]=$username;
-		header("Location: profile.php");
-	}
-	else echo '<div class="well" ><div class="saema"><H4>USERNAME PASSWORD DO NOT MATCH!</H4></div></div>;';
-
-	}
-
+	//session_start();
 ?>
 
 	<h1 class="well">LOGIN FORM</h1>
 		<div class="col-md-12 well">
-			<form method="post">
+			<form method="post" >
+			<div id="us3"></div>
 				<?php if($_SESSION['id'])
 					echo "PLEASE CHECK YOUR MAIL!";
 				?>
@@ -45,14 +16,16 @@
 					<div class="row">
 						<div class="col-md-4 form-group">
 							<label>USERNAME</label>
-							<input class="form-control" type="text" name="username" required placeholder="Enter username Name Here.." >
+							<input class="form-control" type="text" name="username" id="usr" required placeholder="Enter username Name Here.." >
+							<div id="us1"></div>
 						</div>
 						<div class="col-md-4 form-group">
 							<label>PASSWORD</label>
-							<input class="form-control" type="password" name="password" maxlength=5 required placeholder="Password must be max 5 characters ." >
+							<input class="form-control" type="password" name="password" id="pwd" maxlength=5 required placeholder="Password must be max 5 characters ." >
+							<div id="us2"></div>
 						</div>
 					</div>
-					<button type="submit" class="btn btn-info" name="login" value="submit">Submit</button>
+					<button type="button" class="btn btn-info" name="login" id="login" value="submit">Submit</button>
 					<a href="forgot.php">FORGOT PASSWORD?</a>
 			</form>	
 		</div>

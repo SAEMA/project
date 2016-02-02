@@ -1,5 +1,5 @@
 <?php 
-session_start();
+//session_start();
 // Report all errors
 //create a database connection
 $dbhost = "localhost";

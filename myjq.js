@@ -1,10 +1,10 @@
-$(document).ready(function(){
-	
+$(document).ready(function(){	
 	$("#edit").click(function(e){
 		var check = 0;
 		//array declaration
 		var error = new Array();
-
+		//calling functions and storing the values in array
+		//for checking empty or not
 		error[0] = isempty('#username','#id1'); 
 		error[1] = isempty('#password','#id2');
 		error[2] = isempty('#fname','#id3');
@@ -63,15 +63,13 @@ $(document).ready(function(){
 		if(check !== 0)
 		{
 		return false;
-	}
-	else 
+		}
+		else {
 		return true; 
-	
+		}
 	});
 });
-
 		function isempty(name,id){
-
 			var temp = $.trim($(name).val());
 			//validation for not empty
 			if(temp.length == 0){
@@ -144,8 +142,7 @@ $(document).ready(function(){
 			}
 			else 
 				return true;
-
-		}	
+		}
 		function checklength(name,id){
 
 			var temp = $(name).val();
@@ -161,8 +158,6 @@ $(document).ready(function(){
 			return false;
 			}
 			else 
-				return true;
+			return true;
 		}	
 
-
-	

@@ -1,8 +1,7 @@
 <?php  
 	require 'hr.php';
-	//session_start();
+	session_start();
 ?>
-
 	<h1 class="well">LOGIN FORM</h1>
 		<div class="col-md-12 well">
 			<form method="post" >
@@ -37,11 +36,7 @@
 					</form>
 				</div> 
 		</div>
-	</body>	
-</html>
-
 <?php  
-		require 'fr.php';
-
+	require 'fr.php';
 ?>		
 

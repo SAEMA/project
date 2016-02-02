@@ -3,7 +3,6 @@ $(document).ready(function(){
 	{
 		var username = $.trim($("#usr").val());
 		var password = $.trim($("#pwd").val());
-
 		//array for storing errors
 		var err = ["",""];
 		//validation for username
@@ -15,19 +14,19 @@ $(document).ready(function(){
     	else if(!username.match( /^[a-zA-Z]*$/))
     	{	
     		err[0]="no numbers";
-    		 $("#us1").text(err[0]);
+    		$("#us1").text(err[0]);
     	}
     	if(password === "")
         {   
             err[1]="Password cannot be blank";
-             $("#us2").text(err[1]);
+            $("#us2").text(err[1]);
         }
 
-        if (err[0]!=="" || err[1]!=="" ) { 
-
+        if (err[0]!=="" || err[1]!=="" )
+        {
     		return false;
-    	} 
-    	else {
+        } 
+    else {
     		$.ajax({
   				method: 'POST',
                 url: 'loginserverval.php',
@@ -47,8 +46,6 @@ $(document).ready(function(){
                		}
            		}
             });
-        }
+         }
 	});
-
-
 });

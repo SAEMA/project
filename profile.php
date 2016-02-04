@@ -1,9 +1,7 @@
 <?php
 require('dbinfo.php');
 session_start();
-
 require 'hr.php';
-
 //print_r($_SESSION);
 if($username=$_SESSION["username"])
 {
@@ -167,20 +165,16 @@ if($username=$_SESSION["username"])
 				</div>
 			</form>
 			<br>
-		</div>												
+		</div>
 	</div>
-	
 <?php  } 
 else
 {
 	header("Location:login.php");
 }
 ?>
-</body>
-</html>
-
 <?php
  	//close the connection
- require 'fr.php';
+ 	require 'fr.php';
  	mysqli_close($connection);
 ?>

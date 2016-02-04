@@ -335,7 +335,7 @@ if($username=$_SESSION["username"])
 					die("database connection failed " . mysqli_error($connection));
 				}
 				else
-				{				
+				{			
 					header("Location: profile.php");
 					echo "SUCCESSFUL UPDATE!"; 
 				}							

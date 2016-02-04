@@ -21,7 +21,6 @@ $(document).ready(function(){
             err[1]="Password cannot be blank";
             $("#us2").text(err[1]);
         }
-
         if (err[0]!=="" || err[1]!=="" )
         {
     		return false;
@@ -36,10 +35,17 @@ $(document).ready(function(){
                     password: password 
                 },
                 success: function(msg) {
-                	if (msg.idi == "success") 
+                    //console.log(msg.admin == 5);
+                	if (msg.idi == "success" ) 
                 	{
+                       if(msg.admin == 5)
+                       {
+                        window.location.replace('admin.php');
+                       }
+                       else {  
                 		window.location.replace('profile.php');
-                	} 
+                        }
+                    } 
                 	else 
                 	{  
                 		$("#us3").html(msg.idi1);          	

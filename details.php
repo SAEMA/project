@@ -311,7 +311,7 @@
 				$query = "SELECT COUNT(*) AS email from registration1 where emailid = '{$_POST["emailid"]}'";
 				$result = mysqli_query($connection,$query);
 				$getemailid = mysqli_fetch_assoc($result);
-				if(!empty($getemailid))
+				if($getemailid['email']==1)
 				{
 					$errormessage .= "<br> EMAIL ID HAS ALREADY BEEN TAKEN!</br>";	
 				}		

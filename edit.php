@@ -1,7 +1,7 @@
 <?php
 session_start();
 require'hr.php';
-require('dbinfo.php');
+require'dbinfo.php';
 require'editserverval.php';
 ?>
 	<h1 class="well">DO YOU WANT TO EDIT YOUR PROFILE?</h1>
@@ -32,7 +32,7 @@ require'editserverval.php';
 			</div>
 		</div>
 		<div class="col-lg-12 well">						
-			<form action="" method="post"  enctype="multipart/form-data">											
+			<form action="profile.php" method="post"  enctype="multipart/form-data">											
 				<img id="image"src="img/<?php echo  $profile['fileToUpload']; ?>" width="200" height="200">
 				<!--<img id="image" src="" alt="image preview here" height="150" width="150" />-->
 					<input type="file" name="fileToUpload" id="fileToUpload" >
@@ -246,8 +246,7 @@ require'editserverval.php';
 						<label for="comment">More about you:</label>
 						<textarea class="form-control" rows="5" id="more" name="yo" placeholder="update status!" ><?php echo $profile['yo']?></textarea>
 						<br>
-						 <button type="submit" class="btn btn-info" value="edit" id="edit" name="edit" >EDIT</button>
-					<div id="progressbar"></div>
+						<button type="submit" class="btn btn-info" value="edit" id="edit" name="edit" >EDIT</button>
 					</form>
 				</div>
 			</div>

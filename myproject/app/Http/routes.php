@@ -10,6 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::resource('index','WebScraperController@getIndex');
 
 Route::get('/', function () {
     return view('home');
@@ -19,6 +20,10 @@ Route::get('/testa', function () {
     echo "dsfsd";
 });
 
+
+Route::get('my_calendar',  function () {
+    return view('my_calendar');
+});
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -158,7 +163,6 @@ $s = 'social.';
 Route::get('/social/redirect/{provider}',   ['as' => $s . 'redirect',   'uses' => 'Auth\AuthController@getSocialRedirect']);
 
 Route::get('/social/handle/{provider}',     ['as' => $s . 'handle',     'uses' => 'Auth\AuthController@getSocialHandle']);
-
 
 
 

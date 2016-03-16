@@ -1,0 +1,66 @@
+.container
+{
+    width:700px;
+}
+.nav
+{
+    padding-left:10px;
+    padding-right:10px;
+}
+.jumbotron
+{
+    padding-top:0px;
+    margin-bottom: 0px;
+    padding-bottom:0px;
+}
+.date
+{
+
+}
+.well
+{
+    background-color: #FECECE;
+    width:60%;
+    margin-left: 20%;
+}
+
+.alert 
+{   
+    /*margin-left: 20%;*/
+    
+    /*height:60px;*/
+}
+.body
+{
+}
+#id1,#id2,#id3,#id4,#id5,#id6,#id7,#id8,#id9,#id10,#id11,#id12,#id13,#id14,#id15,#id16,#id17,#id18,#id24
+{
+    color: #ff1d8e;
+    font-size: 15px;
+}
+#profilePic
+{
+    height: 250px;
+    width: 200px;
+}
+.saema
+{
+    color:#ff0000;
+    width:40px;
+}
+#display 
+{
+
+}
+.table
+{
+    color:#ff1d8e;
+}
+/*@media screen and (min-width:1200px) {
+    #list_records {
+
+        width:100%;
+        height:100%;
+
+    }
+}*/

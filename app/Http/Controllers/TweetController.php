@@ -124,7 +124,7 @@ class TweetController extends Controller
 
 	        $str .= "<span class='glyphicon glyphicon-heart'></span>TWEET INFO OF   ". $substitute."<hr>  ";
 
-	        $str .= "TWEET INFO OF  ". $response->statuses[$i]->text." </div>";
+	        $str .= "TWEET ::  ". $response->statuses[$i]->text." </div>";
 
 		} 
          

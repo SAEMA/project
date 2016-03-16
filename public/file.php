@@ -17,19 +17,28 @@ $contents = preg_replace('/\s(1,)/', ' ', $contents);
 // 	echo 'false';
 // echo "<pre>";
 // print_r(htmlentities($contents));
- print "hello moto";
-$records = preg_split('/<a class="snippet__link/', $contents);
+//  print "hello moto";
+//  exit();
+$records = preg_split('/<div class="snippet__head/', $contents);
 
 for ($ix = 1; $ix < count($records); $ix++)
 {
 	$tmp = $records[$ix];
-	preg_match('/href="(.*?)"/', $tmp, $match_url);
+	
+	preg_match('/<a class="snippet__link" href="(.*?)"/', $tmp, $match_url);
 
-	print $tmp . "\n";
-	exit();
+	preg_match('/data-entity_type="RESTAURANT">(.*?)</', $tmp, $match_name);
+
+	preg_match('/<a class="cblack"/', $tmp, $match_addr);
+	
+	print_r($match_url);
+	print_r($match_name);
+	print_r($match_addr);
+	 // print $tmp . "\n";
+	 // exit();
 }
 
 
-print count($records) . "\n";
+// print count($records) . "saema". "\n";
 
-print_r($records);
+// print_r($records);

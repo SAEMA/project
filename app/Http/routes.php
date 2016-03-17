@@ -16,7 +16,7 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/testa', function () {
+Route::get('/testas', function () {
     echo "dsfsd";
 });
 
@@ -24,6 +24,11 @@ Route::get('/testa', function () {
 Route::get('my_calendar',  function () {
     return view('my_calendar');
 });
+
+Route::get('book_my_flight', 'My_FlightController@my_flight_book');	
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -158,8 +163,14 @@ Route::group(['middleware' => 'web'], function () {
 	#------------------------------------------------------------------------------------
 	Route::post('fetch_data', 'TweetController@posting_find_data');	
 
+	
 
-$s = 'social.';
+
+
+
+
+
+ $s = 'social.';
 Route::get('/social/redirect/{provider}',   ['as' => $s . 'redirect',   'uses' => 'Auth\AuthController@getSocialRedirect']);
 
 Route::get('/social/handle/{provider}',     ['as' => $s . 'handle',     'uses' => 'Auth\AuthController@getSocialHandle']);

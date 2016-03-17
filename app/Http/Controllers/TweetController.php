@@ -122,7 +122,7 @@ class TweetController extends Controller
 
 	        $str .= "<img id='image' src=" . $response->statuses[$i]->user->profile_image_url_https ." width='50' height='50' class='img-thumbnail'>";
 
-	        $str .= "<span class='glyphicon glyphicon-heart'></span>TWEET INFO OF   ". $substitute."<hr>  ";
+	        $str .= "<span class='glyphicon glyphicon-heart'></span>TWEET INFO OF   ". $substitute."<hr>";
 
 	        $str .= "TWEET ::  ". $response->statuses[$i]->text." </div>";
 

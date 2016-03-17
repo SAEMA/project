@@ -4,7 +4,7 @@
 
 //option 2 - fopen
 
-header('content-type: text/plain');
+//header('content-type: text/plain');
 
 $contents = file_get_contents('https://www.zomato.com/bhubaneswar');
 
@@ -15,10 +15,10 @@ $contents = preg_replace('/\s(1,)/', ' ', $contents);
 
 // if ($contents === false)
 // 	echo 'false';
-// echo "<pre>";
-// print_r(htmlentities($contents));
-//  print "hello moto";
-//  exit();
+echo "<pre>";
+print_r(htmlentities($contents));
+ //print "hello moto";
+ exit();
 $records = preg_split('/<div class="snippet__head/', $contents);
 
 for ($ix = 1; $ix < count($records); $ix++)

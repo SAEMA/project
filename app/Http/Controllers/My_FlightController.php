@@ -22,58 +22,149 @@ use App\Http\Controllers\Hash;
 */
 class My_FlightController extends Controller
 {
-	public function my_flight_book()
+
+	public function search_page()
 	{
-		$curl = curl_init('https://www.kayak.co.in/flight-routes/India-IN0/Amsterdam-Schiphol-AMS');
-
-			curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-			 
-			$page = curl_exec($curl);
-			 
-			if ( curl_errno($curl) ) // check for execution errors
-			{
-				echo 'Scraper error: ' . curl_error($curl);
-				exit;
-			}
-			 
-			curl_close($curl);
-
-			$records = preg_split('/<div class="inner/', $page);
-
-			// echo count($records);
-			//  echo "<pre>";
-			// print_r(htmlentities($page));
-			//  exit;
-
-
-			for ( $ix = 1; $ix < count($records); $ix++ )
-			{
-				$tmp = $records[$ix];
-				
-				$regex = array ();
-				$regex[0] = '/<span class="detailsimportant">(.*?)<\/span>/';
-				$regex[1] = '/<div class="airlineName">(.*?)<\/div>/';
-				$reegx[2] = '/<div class="singleleg singleleg0">(.*?)<\/div>/'; 
-
-				preg_match($regex[0], $tmp, $link);
-				preg_match($regex[1], $tmp, $timing);
-
-
-
-				print_r($link);
-				print_r($timing);
-					// $r = array (
-
-				// 	'link' => $link[1]
-
-				// );
-
-	//				print_r($r);
-				echo "hi";
-				exit;
-
-
-		}
+		return view('search_myflight');
 	}
 
+	public function my_flight_book(Request $request)
+	{
+		//$request->search
+
+		// switch ($)
+  //   		{
+  //   			case 'eq': 
+  //           		$find_match = DB::table('users')->where($searchfield, $searchstring)->get();
+  //           		break;
+
+  //           }
+
+
+
+
+		$html = file_get_contents('https://www.kayak.co.in/flight-routes/India-IN0/Amsterdam-Schiphol-AMS'); //get the html returned from the following url
+
+		$flight_doc = new \DOMDocument();
+
+		libxml_use_internal_errors(TRUE); //disable libxml errors
+
+		if ( ! empty($html) )
+		{ //if any html is actually returned
+
+			$flight_doc->loadHTML($html);
+			libxml_clear_errors(); //remove errors for html
+			  
+			$flight_xpath = new \DOMXPath($flight_doc);
+
+			$durations = array();
+			  //fetch for the duration 
+			$flight_row = $flight_xpath->query('//div[@class="detailsinfo"]');
+
+			if ( $flight_row->length > 0 )
+			{
+				$i = 0;
+		     	foreach ( $flight_row as $row )
+		      	{
+		        	$durations[$i] = $row->nodeValue;
+		        	$i++;
+		      	}
+		  	}
+		  	// print_r($duration);
+		  	// exit();
+		  	// echo "saema<br>";
+		  	//another fetch
+
+		  	$cost = array();
+		  	$flight_money = $flight_xpath->query('//span[@itemprop="price"]');
+
+		  	if ( $flight_money->length > 0 )
+			{
+				$i = 0;
+		     	foreach ( $flight_money as $money )
+		      	{
+		        	$cost[$i] = $money->nodeValue;
+		        	$i++;
+		      	}
+		  	}
+		  	// print_r($cost);
+		  	// echo "<br>";
+
+		  	//another fetch for image
+		  	$airline = array();
+		  	$flight_img = $flight_xpath->query('//div[@class="airlineName"]');
+
+		  	if ( $flight_img->length > 0 )
+			{
+				$i = 0;
+		     	foreach ( $flight_img as $imgs )
+		      	{
+		        	$airline[$i] = $imgs->nodeValue;
+		        	$i++;
+		      	}
+		  	}
+
+		  	// print_r($airline);
+		  	// echo "<br>";
+
+		  	$roundtrip = array();
+		  	//for place of arrival and deaprture
+		  	$flight_air1 = $flight_xpath->query('//div[@class="airport"]');
+
+		  	if ( $flight_air1->length > 0 )
+			{
+				$i = 0;
+		     	foreach ( $flight_air1 as $airport1 )
+		      	{
+		        	$roundtrip[$i] = $airport1->nodeValue;
+		      		$i++;
+		      	}
+		  	}
+		  	// print_r($roundtrip);
+		  	// echo "<br>";
+
+		  	$duration = array();
+		  	//for time duration ....map with every two
+		  	$flight_time = $flight_xpath->query('//div[@class="duration"]');
+
+		  	if ( $flight_time->length > 0 )
+			{
+				$i = 0;
+		     	foreach ( $flight_time as $time )
+		      	{
+		        	$duration[$i] = $time->nodeValue;
+		      		$i++;
+		      	}
+		  	}
+		  	// print_r($duration);
+		  	// echo "<br>";
+
+		  	$stophere = array();
+		  	//for airportslist class="airportslist"
+		  	$flight_stoppage = $flight_xpath->query('//span[@class="airportslist"]');
+
+		  	if ( $flight_stoppage->length > 0 )
+			{
+				$i = 0;
+		     	foreach ( $flight_stoppage as $stop )
+		      	{
+		        	$stophere[$i] = $stop->nodeValue;
+		      		$i++;
+		      	}
+		  	}
+
+		}
+
+		return \View::make('flight_details')
+			->with('durations' , $durations)
+			->with('costs' , $cost)
+			->with('airline' , $airline)
+			->with('roundtrip' , $roundtrip)
+			->with('duration' , $duration)
+            ->with('stops' , $stophere);
+           
+	}
 }
+
+
+

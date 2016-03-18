@@ -25,7 +25,7 @@ Route::get('my_calendar',  function () {
     return view('my_calendar');
 });
 
-Route::get('book_my_flight', 'My_FlightController@my_flight_book');	
+Route::get('search', 'My_FlightController@search_page');	
 
 
 

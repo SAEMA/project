@@ -44,10 +44,17 @@ Route::post('search', 'My_FlightController@my_flight_book');
 
 
 Route::group(['middleware' => 'web'], function () {
-	
+
+
+
 	#handles authentication at login time-----------------------------------------------
     Route::auth();																		#
     #-----------------------------------------------------------------------------------
+
+
+	Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
+	Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
+	
 
     //Route::get('/home', 'HomeController@index')->middleware('isActive');
 

@@ -156,7 +156,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        'Laravel\Socialite\SocialiteServiceProvider',
     ],
 
     /*
@@ -206,6 +206,7 @@ return [
         'Widget'    => Arrilot\Widgets\Facade::class,
         'AsyncWidget' => Arrilot\Widgets\AsyncFacade::class,
         'TwitterAPIExchange' => '\TwitterAPIExchange',
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class
 
     ],
 

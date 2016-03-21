@@ -23,131 +23,168 @@ use App\Http\Controllers\Hash;
 class My_FlightController extends Controller
 {
 
-	public function search_page()
-	{
-		return view('search_myflight');
-	}
+    public function search_page()
+    {
+        return view('search_myflight');
+    }
 
-	public function my_flight_book(Request $request)
-	{
-		$db_search = $request->search_item;
+    public function my_flight_book(Request $request)
+    {
 
-		$url_part = Capital::where('input',$db_search)->first();
-		
-		
-		$total_url = 'https://www.kayak.co.in/flight-routes/India-IN0/' . $url_part['name'];
+        $departure_date = $request->from_date;
+        $arrival_date = $request->to_date;
+        $search_from = $request->search_from;
+        $search_to = $request->search_to;
 
-		$html = file_get_contents($total_url); //get the html returned from the following url
+       
 
-		$flight_doc = new \DOMDocument();
+        //$db_search = $request->search_item;
 
-		libxml_use_internal_errors(TRUE); //disable libxml errors
+        $url_part1 = Capital::where('input', $search_from)->first();
+        $url_part2 = Capital::where('input', $search_to)->first();
 
-		if ( ! empty($html) )
-		{ //if any html is actually returned
+        if ( $search_from == "India")
+        //this url when from india 
+        {
+            $total_url = 'https://www.kayak.co.in/flight-routes/India-IN0/' . $url_part2['name'];
+        }
+        else 
+        {
+            $total_url = 'https://www.kayak.co.in/flights/' . $url_part1['combo'] . '-' . $url_part2['combo'] . '/' . $departure_date . '/'. $arrival_date;  
+            
+        }
+        
+        $html = file_get_contents($total_url); //get the html returned from the following url
+          
+        $flight_doc = new \DOMDocument();
 
-			$flight_doc->loadHTML($html);
-			libxml_clear_errors(); //remove errors for html
-			  
-			$flight_xpath = new \DOMXPath($flight_doc);
+        libxml_use_internal_errors(TRUE); //disable libxml errors
 
-			$durations = array();
-			  //fetch for the duration 
-			$flight_row = $flight_xpath->query('//div[@class="detailsinfo"]');
+        if ( ! empty($html) )
+        { //if any html is actually returned
 
-			if ( $flight_row->length > 0 )
-			{
-				$i = 0;
-		     	foreach ( $flight_row as $row )
-		      	{
-		        	$durations[$i] = $row->nodeValue;
-		        	$i++;
-		      	}
-		  	}
-		  	
-
-		  	$cost = array();
-		  	$flight_money = $flight_xpath->query('//span[@itemprop="price"]');
-
-		  	if ( $flight_money->length > 0 )
-			{
-				$i = 0;
-		     	foreach ( $flight_money as $money )
-		      	{
-		        	$cost[$i] = $money->nodeValue;
-		        	$i++;
-		      	}
-		  	}
-		  
-		  	$airline = array();
-		  	$flight_img = $flight_xpath->query('//div[@class="airlineName"]');
-
-		  	if ( $flight_img->length > 0 )
-			{
-				$i = 0;
-		     	foreach ( $flight_img as $imgs )
-		      	{
-		        	$airline[$i] = $imgs->nodeValue;
-		        	$i++;
-		      	}
-		  	}
+            $flight_doc->loadHTML($html);
+            libxml_clear_errors(); //remove errors for html
+              
+            $flight_xpath = new \DOMXPath($flight_doc);
 
 
-		  	$roundtrip = array();
-		  	//for place of arrival and deaprture
-		  	$flight_air1 = $flight_xpath->query('//div[@class="airport"]');
+            //for else part
+            //target="_blank" class="results_price bookitlongerprice">
+            // //div class="flighttime flightTimeDeparture"
+            // $flight_row1 = $flight_xpath->query('//div[@class="airport"]');
 
-		  	if ( $flight_air1->length > 0 )
-			{
-				$i = 0;
-		     	foreach ( $flight_air1 as $airport1 )
-		      	{
-		        	$roundtrip[$i] = $airport1->nodeValue;
-		      		$i++;
-		      	}
-		  	}
-		  	
+            // if ( $flight_row1->length > 0 )
+            // {
+            //     $i = 0;
+            //     foreach ( $flight_row1 as $row1 )
+            //     {
+            //         echo $row1->nodeValue;
+            //         $i++;
+            //     }
+            // }
 
-		  	$duration = array();
-		  	//for time duration ....map with every two
-		  	$flight_time = $flight_xpath->query('//div[@class="duration"]');
+            //exit;--------------------------the upper commneted codes did not work as kayak prevents such action maybe
 
-		  	if ( $flight_time->length > 0 )
-			{
-				$i = 0;
-		     	foreach ( $flight_time as $time )
-		      	{
-		        	$duration[$i] = $time->nodeValue;
-		      		$i++;
-		      	}
-		  	}
-		  	
 
-		  	$stophere = array();
-		  	//for airportslist class="airportslist"
-		  	$flight_stoppage = $flight_xpath->query('//span[@class="airportslist"]');
 
-		  	if ( $flight_stoppage->length > 0 )
-			{
-				$i = 0;
-		     	foreach ( $flight_stoppage as $stop )
-		      	{
-		        	$stophere[$i] = $stop->nodeValue;
-		      		$i++;
-		      	}
-		  	}
+            $durations = array();
+              //fetch for the duration 
+            $flight_row = $flight_xpath->query('//div[@class="detailsinfo"]');
 
-		}
+            if ( $flight_row->length > 0 )
+            {
+                $i = 0;
+                foreach ( $flight_row as $row )
+                {
+                    $durations[$i] = $row->nodeValue;
+                    $i++;
+                }
+            }
+            
 
-		return \View::make('flight_details')
-			->with('durations' , $durations)
-			->with('costs' , $cost)
-			->with('airline' , $airline)
-			->with('roundtrip' , $roundtrip)
-			->with('duration' , $duration)
+            $cost = array();
+            $flight_money = $flight_xpath->query('//span[@itemprop="price"]');
+
+            if ( $flight_money->length > 0 )
+            {
+                $i = 0;
+                foreach ( $flight_money as $money )
+                {
+                    $cost[$i] = $money->nodeValue;
+                    $i++;
+                }
+            }
+          
+            $airline = array();
+            $flight_img = $flight_xpath->query('//div[@class="airlineName"]');
+
+            if ( $flight_img->length > 0 )
+            {
+                $i = 0;
+                foreach ( $flight_img as $imgs )
+                {
+                    $airline[$i] = $imgs->nodeValue;
+                    $i++;
+                }
+            }
+
+
+            $roundtrip = array();
+            //for place of arrival and deaprture
+            $flight_air1 = $flight_xpath->query('//div[@class="airport"]');
+
+            if ( $flight_air1->length > 0 )
+            {
+                $i = 0;
+                foreach ( $flight_air1 as $airport1 )
+                {
+                    $roundtrip[$i] = $airport1->nodeValue;
+                    $i++;
+                }
+            }
+            
+
+            $duration = array();
+            //for time duration ....map with every two
+            $flight_time = $flight_xpath->query('//div[@class="duration"]');
+
+            if ( $flight_time->length > 0 )
+            {
+                $i = 0;
+                foreach ( $flight_time as $time )
+                {
+                    $duration[$i] = $time->nodeValue;
+                    $i++;
+                }
+            }
+            
+
+            $stophere = array();
+            //for airportslist class="airportslist"
+            $flight_stoppage = $flight_xpath->query('//span[@class="airportslist"]');
+
+            if ( $flight_stoppage->length > 0 )
+            {
+                $i = 0;
+                foreach ( $flight_stoppage as $stop )
+                {
+                    $stophere[$i] = $stop->nodeValue;
+                    $i++;
+                }
+            }
+
+        }
+
+        return \View::make('flight_details')
+            ->with('durations' , $durations)
+            ->with('costs' , $cost)
+            ->with('airline' , $airline)
+            ->with('roundtrip' , $roundtrip)
+            ->with('duration' , $duration)
             ->with('stops' , $stophere);
            
-	}
+    }
 
 
 }

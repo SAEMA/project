@@ -50,6 +50,16 @@
                             <i class="fa fa-btn fa-sign-in"></i>Login
                         </button>
                         <br>
+
+                        <a class="btn btn-info" href="auth/facebook" role="button">Login with facebook</a>
+
+                            <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                            </fb:login-button>
+
+                            <div id="status">
+                            </div>
+
+
                         <h2>.<h2>
                         <a href="<?php echo e(route('social.redirect', ['provider' => 'google'])); ?>" class="btn btn-lg btn-primary btn-block google" type="submit">Google</a>
                         <a class="btn btn-link" href="<?php echo e(url('/password/reset')); ?>">Forgot Your Password?</a>

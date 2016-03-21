@@ -14,19 +14,36 @@
 <br>
 <br>
 <form action="" method="post" enctype="multipart/form-data" name="mysearch">
-  <div class="row">
+    <div class="row">
      
 
-	 <div class="col-lg-6">
-    	<div class="input-group">
-     	 <input type="text" class="form-control" placeholder="Search for..." name="search_item" id="search_item">
-      		<span class="input-group-btn">
+	   <div class="col-lg-6 from-group">
+     
+     	 <input type="text" class="form-control" id="search_from" name="search_from" placeholder="Search from..."  value="">
+       <br>
+       <input type="text" class="form-control" id="search_to" name="search_to" placeholder="Search to..."  value="">
+       <br>
+
+       <span class="glyphicon glyphicon-calendar"></span>
+        <label>DEPARTURE DATE</label> 
+          
+            <input type="date" class="form-control" id="from_date" name="from_date" value="">
+           
+            <br>
+
+
+            <span class="glyphicon glyphicon-calendar"></span>
+            <label>ARRIVAL DATE</label> 
+             
+              <input type="date" class="form-control" id="to_date" name="to_date" value="">
+           
+      		<br><span class="input-group-btn">
         		<button class="btn btn-md btn-primary" type="submit" name="search" id="search">SEARCH</button>
      		 </span>
     </div>
   </div>
-</div>
+
 </form>
-  </div>
- </body>
- </html>
+</div>
+</body>
+</html>

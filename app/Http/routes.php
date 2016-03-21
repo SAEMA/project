@@ -55,10 +55,17 @@ Route::group(['middleware' => 'web'], function () {
 	Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
 	Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
 	
+	Route::get('facebook_welcome',  function () {
+    return view('facebook_welcome');
+});
 
-    //Route::get('/home', 'HomeController@index')->middleware('isActive');
 
-    Route::get('/home', 'HomeController@index');
+    Route::get('/home', 'HomeController@index')->middleware('isActive');
+
+//    Route::get('home', array('as' => 'home', 'uses' => function(){
+//   return view('facebook_welcome');
+// }));
+   // Route::get('/home', 'HomeController@index');
     #registration page -----------------------------------------------------------------
     #																					#
     #getting the registration page view-------------------------------------			#

@@ -14,7 +14,8 @@
         "google/apiclient": "^1.1",
         "fabpot/goutte": "^3.1",
         "anlutro/curl": "^1.4",
-        "laravel/socialite": "^2.0"
+        "laravel/socialite": "^2.0",
+        "pingpong/facebook": "~2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

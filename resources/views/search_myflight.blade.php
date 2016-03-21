@@ -13,29 +13,20 @@
   <div class="container">
 <br>
 <br>
-
+<form action="" method="post" enctype="multipart/form-data" name="mysearch">
   <div class="row">
-      <!-- <div class="col-lg-6">
-		<div class="input-group">
-
-			<input type="text" class=" form-control input-md" title="Enter you email."placeholder="Enter city" name="city_name" type="text" id="city_name"><button class="btn btn-md btn-primary" type="button" name="search" id="search">SEARCH</button>
-
-		  	
-		 
-		</div>
-	</div> -->
-
+     
 
 	 <div class="col-lg-6">
     	<div class="input-group">
-     	 <input type="text" class="form-control" placeholder="Search for...">
+     	 <input type="text" class="form-control" placeholder="Search for..." name="search_item" id="search_item">
       		<span class="input-group-btn">
-        		<button class="btn btn-md btn-primary" type="button" name="search" id="search">SEARCH</button>
+        		<button class="btn btn-md btn-primary" type="submit" name="search" id="search">SEARCH</button>
      		 </span>
-    </div><!-- /input-group -->
-  </div><!-- /.col-lg-6 -->
+    </div>
+  </div>
 </div>
-
+</form>
   </div>
  </body>
  </html>

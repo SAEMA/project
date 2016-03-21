@@ -3060,3 +3060,113 @@ Stack trace:
 #34 /var/www/html/myproject/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #35 /var/www/html/myproject/server.php(21): require_once('/var/www/html/m...')
 #36 {main}  
+[2016-03-18 13:00:48] production.ERROR: exception 'Symfony\Component\Console\Exception\RuntimeException' with message 'Not enough arguments (missing: "name").' in /var/www/html/myproject/vendor/symfony/console/Input/Input.php:87
+Stack trace:
+#0 /var/www/html/myproject/vendor/symfony/console/Command/Command.php(251): Symfony\Component\Console\Input\Input->validate()
+#1 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Console/Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#2 /var/www/html/myproject/vendor/symfony/console/Application.php(791): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 /var/www/html/myproject/vendor/symfony/console/Application.php(186): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Foundation\Console\ModelMakeCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 /var/www/html/myproject/vendor/symfony/console/Application.php(117): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#5 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#6 /var/www/html/myproject/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#7 {main}  
+[2016-03-18 13:02:40] production.ERROR: exception 'Symfony\Component\Console\Exception\RuntimeException' with message 'Not enough arguments (missing: "name").' in /var/www/html/myproject/vendor/symfony/console/Input/Input.php:87
+Stack trace:
+#0 /var/www/html/myproject/vendor/symfony/console/Command/Command.php(251): Symfony\Component\Console\Input\Input->validate()
+#1 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Console/Command.php(155): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#2 /var/www/html/myproject/vendor/symfony/console/Application.php(791): Illuminate\Console\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#3 /var/www/html/myproject/vendor/symfony/console/Application.php(186): Symfony\Component\Console\Application->doRunCommand(Object(Illuminate\Foundation\Console\ModelMakeCommand), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 /var/www/html/myproject/vendor/symfony/console/Application.php(117): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#5 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(107): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#6 /var/www/html/myproject/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#7 {main}  
+[2016-03-18 13:11:12] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Capitals' not found' in /var/www/html/myproject/app/Http/Controllers/My_FlightController.php:35
+Stack trace:
+#0 {main}  
+[2016-03-18 13:12:08] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Capitals' not found' in /var/www/html/myproject/app/Http/Controllers/My_FlightController.php:35
+Stack trace:
+#0 {main}  
+[2016-03-18 13:13:31] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'service' not found' in /var/www/html/myproject/app/Http/Controllers/My_FlightController.php:35
+Stack trace:
+#0 {main}  
+[2016-03-18 13:15:42] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Capital' not found' in /var/www/html/myproject/app/Http/Controllers/My_FlightController.php:35
+Stack trace:
+#0 {main}  
+[2016-03-18 13:16:10] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Capital' not found' in /var/www/html/myproject/app/Http/Controllers/My_FlightController.php:35
+Stack trace:
+#0 {main}  
+[2016-03-18 13:17:32] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Capital' not found' in /var/www/html/myproject/app/Http/Controllers/My_FlightController.php:35
+Stack trace:
+#0 {main}  
+[2016-03-18 13:17:42] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Capital' not found' in /var/www/html/myproject/app/Http/Controllers/My_FlightController.php:35
+Stack trace:
+#0 {main}  
+[2016-03-18 13:18:44] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Capital' not found' in /var/www/html/myproject/app/Http/Controllers/My_FlightController.php:35
+Stack trace:
+#0 {main}  
+[2016-03-18 13:19:10] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Capital' not found' in /var/www/html/myproject/app/Http/Controllers/My_FlightController.php:34
+Stack trace:
+#0 {main}  
+[2016-03-18 13:19:56] production.ERROR: exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'forge'@'localhost' (using password: NO)' in /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php:55
+Stack trace:
+#0 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Database/Connectors/Connector.php(55): PDO->__construct('mysql:host=loca...', 'forge', '', Array)
+#1 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Database/Connectors/MySqlConnector.php(24): Illuminate\Database\Connectors\Connector->createConnection('mysql:host=loca...', Array, Array)
+#2 /var/www/html/myproject/bootstrap/cache/compiled.php(11631): Illuminate\Database\Connectors\MySqlConnector->connect(Array)
+#3 [internal function]: Illuminate\Database\Connectors\ConnectionFactory->Illuminate\Database\Connectors\{closure}()
+#4 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Database/Connection.php(864): call_user_func(Object(Closure))
+#5 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Database/Connection.php(732): Illuminate\Database\Connection->getPdo()
+#6 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Database/Connection.php(621): Illuminate\Database\Connection->reconnectIfMissingConnection()
+#7 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Database/Connection.php(342): Illuminate\Database\Connection->run('select * from `...', Array, Object(Closure))
+#8 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(1461): Illuminate\Database\Connection->select('select * from `...', Array, true)
+#9 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(1447): Illuminate\Database\Query\Builder->runSelect()
+#10 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(569): Illuminate\Database\Query\Builder->get(Array)
+#11 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(303): Illuminate\Database\Eloquent\Builder->getModels(Array)
+#12 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(273): Illuminate\Database\Eloquent\Builder->get(Array)
+#13 /var/www/html/myproject/app/Http/Controllers/My_FlightController.php(35): Illuminate\Database\Eloquent\Builder->first()
+#14 [internal function]: App\Http\Controllers\My_FlightController->my_flight_book(Object(Illuminate\Http\Request))
+#15 /var/www/html/myproject/bootstrap/cache/compiled.php(9236): call_user_func_array(Array, Array)
+#16 /var/www/html/myproject/bootstrap/cache/compiled.php(9298): Illuminate\Routing\Controller->callAction('my_flight_book', Array)
+#17 /var/www/html/myproject/bootstrap/cache/compiled.php(9278): Illuminate\Routing\ControllerDispatcher->call(Object(App\Http\Controllers\My_FlightController), Object(Illuminate\Routing\Route), 'my_flight_book')
+#18 [internal function]: Illuminate\Routing\ControllerDispatcher->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#19 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(52): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#20 [internal function]: Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#21 /var/www/html/myproject/bootstrap/cache/compiled.php(9755): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#22 /var/www/html/myproject/bootstrap/cache/compiled.php(9279): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#23 /var/www/html/myproject/bootstrap/cache/compiled.php(9266): Illuminate\Routing\ControllerDispatcher->callWithinStack(Object(App\Http\Controllers\My_FlightController), Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'my_flight_book')
+#24 /var/www/html/myproject/bootstrap/cache/compiled.php(8355): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'App\Http\Contro...', 'my_flight_book')
+#25 /var/www/html/myproject/bootstrap/cache/compiled.php(8342): Illuminate\Routing\Route->runController(Object(Illuminate\Http\Request))
+#26 /var/www/html/myproject/bootstrap/cache/compiled.php(8056): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#27 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#28 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(52): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#29 [internal function]: Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#30 /var/www/html/myproject/bootstrap/cache/compiled.php(9755): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#31 /var/www/html/myproject/bootstrap/cache/compiled.php(8057): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#32 /var/www/html/myproject/bootstrap/cache/compiled.php(8048): Illuminate\Routing\Router->runRouteWithinStack(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request))
+#33 /var/www/html/myproject/bootstrap/cache/compiled.php(8038): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#34 /var/www/html/myproject/bootstrap/cache/compiled.php(2381): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#35 [internal function]: Illuminate\Foundation\Http\Kernel->Illuminate\Foundation\Http\{closure}(Object(Illuminate\Http\Request))
+#36 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(52): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#37 /var/www/html/myproject/bootstrap/cache/compiled.php(3214): Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#38 [internal function]: Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode->handle(Object(Illuminate\Http\Request), Object(Closure))
+#39 /var/www/html/myproject/bootstrap/cache/compiled.php(9765): call_user_func_array(Array, Array)
+#40 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#41 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(32): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#42 [internal function]: Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#43 /var/www/html/myproject/bootstrap/cache/compiled.php(9755): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#44 /var/www/html/myproject/bootstrap/cache/compiled.php(2328): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#45 /var/www/html/myproject/bootstrap/cache/compiled.php(2312): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#46 /var/www/html/myproject/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#47 /var/www/html/myproject/server.php(21): require_once('/var/www/html/m...')
+#48 {main}  
+[2016-03-18 13:24:18] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '$html' (T_VARIABLE)' in /var/www/html/myproject/app/Http/Controllers/My_FlightController.php:53
+Stack trace:
+#0 {main}  
+[2016-03-18 13:24:36] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '$html' (T_VARIABLE)' in /var/www/html/myproject/app/Http/Controllers/My_FlightController.php:53
+Stack trace:
+#0 {main}  
+[2016-03-18 13:24:51] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '$flight_doc' (T_VARIABLE)' in /var/www/html/myproject/app/Http/Controllers/My_FlightController.php:55
+Stack trace:
+#0 {main}  
+[2016-03-18 13:25:40] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '$html' (T_VARIABLE)' in /var/www/html/myproject/app/Http/Controllers/My_FlightController.php:53
+Stack trace:
+#0 {main}  

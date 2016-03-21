@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use DB;
-use App\Roles;
+use App\Capital;
 use App\Resources;
 use App\Operations;
 use Illuminate\Support\Facades\Validator;
@@ -30,20 +30,14 @@ class My_FlightController extends Controller
 
 	public function my_flight_book(Request $request)
 	{
-		//$request->search
+		$db_search = $request->search_item;
 
-		// switch ($)
-  //   		{
-  //   			case 'eq': 
-  //           		$find_match = DB::table('users')->where($searchfield, $searchstring)->get();
-  //           		break;
+		$url_part = Capital::where('input',$db_search)->first();
+		
+		
+		$total_url = 'https://www.kayak.co.in/flight-routes/India-IN0/' . $url_part['name'];
 
-  //           }
-
-
-
-
-		$html = file_get_contents('https://www.kayak.co.in/flight-routes/India-IN0/Amsterdam-Schiphol-AMS'); //get the html returned from the following url
+		$html = file_get_contents($total_url); //get the html returned from the following url
 
 		$flight_doc = new \DOMDocument();
 
@@ -70,10 +64,7 @@ class My_FlightController extends Controller
 		        	$i++;
 		      	}
 		  	}
-		  	// print_r($duration);
-		  	// exit();
-		  	// echo "saema<br>";
-		  	//another fetch
+		  	
 
 		  	$cost = array();
 		  	$flight_money = $flight_xpath->query('//span[@itemprop="price"]');
@@ -87,10 +78,7 @@ class My_FlightController extends Controller
 		        	$i++;
 		      	}
 		  	}
-		  	// print_r($cost);
-		  	// echo "<br>";
-
-		  	//another fetch for image
+		  
 		  	$airline = array();
 		  	$flight_img = $flight_xpath->query('//div[@class="airlineName"]');
 
@@ -104,8 +92,6 @@ class My_FlightController extends Controller
 		      	}
 		  	}
 
-		  	// print_r($airline);
-		  	// echo "<br>";
 
 		  	$roundtrip = array();
 		  	//for place of arrival and deaprture
@@ -120,8 +106,7 @@ class My_FlightController extends Controller
 		      		$i++;
 		      	}
 		  	}
-		  	// print_r($roundtrip);
-		  	// echo "<br>";
+		  	
 
 		  	$duration = array();
 		  	//for time duration ....map with every two
@@ -136,8 +121,7 @@ class My_FlightController extends Controller
 		      		$i++;
 		      	}
 		  	}
-		  	// print_r($duration);
-		  	// echo "<br>";
+		  	
 
 		  	$stophere = array();
 		  	//for airportslist class="airportslist"
@@ -164,6 +148,8 @@ class My_FlightController extends Controller
             ->with('stops' , $stophere);
            
 	}
+
+
 }
 
 

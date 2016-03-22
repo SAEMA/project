@@ -4,7 +4,14 @@
 	<div class="col-lg-12 well">				
 		<form action="profile.php" method="post" enctype="multipart/form-data">							
 			<div class="col-lg-12 form-group">							
+				
+				<?php if( Auth::user()->avatar == "" ): ?>
 				<img id="profilePic" src="img/<?php echo e(Auth::user()->fileToUpload); ?>" class="img-thumbnail"> 
+
+				<?php else: ?>
+				<img src="<?php echo e(Auth::user()->avatar); ?>" height="200" width="200" />
+
+				<?php endif; ?>
 				<br>
 				<hr>
 				<div class="row">

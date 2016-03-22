@@ -22,9 +22,9 @@ class RegistrationController extends Controller
     #
     #Function that returns the view of profile 
     #
-	public function return_view()
+    public function return_view()
     {
-    	return view('registration_form');
+        return view('registration_form');
     }
 
     #
@@ -32,7 +32,7 @@ class RegistrationController extends Controller
     #
     public function insert_data(Request $request)
     {
-    	$rules = array(
+        $rules = array(
             'name' => 'bail|required|alpha_num|unique:users,name',
             'password' => 'bail|required|max:6',
             'fname' => 'bail|required|alpha',
@@ -53,7 +53,7 @@ class RegistrationController extends Controller
             'fax' => 'bail|required|numeric',
             'email' => 'bail|required|email|unique:users,email',
             'retypepassword' => 'bail|required_if:password,NOT NULL|same:password',
-    	);
+        );
  
         $validator = Validator::make(Input::all(), $rules);
 
@@ -66,49 +66,49 @@ class RegistrationController extends Controller
         } 
         else 
         {
-	    	$insert_data = new User;
+            $insert_data = new User;
             
             $confirmation_code = str_random(30);
-	   
-	    	$insert_data->name = $request->input('name');
-	    	$insert_data->password = $request->input('password');
-	    	$insert_data->fname = $request->input('fname');
-	    	$insert_data->mname = $request->input('mname');
-	    	$insert_data->lname = $request->input('lname');
-	    	$insert_data->options = $request->input('options');
-	    	$insert_data->maritalstatus = $request->input('maritalstatus');
-	    	$insert_data->dob = $request->input('dob');
-	    	$insert_data->employment = $request->input('employment');
-	    	$insert_data->employer = $request->input('employer');
-	    	$insert_data->phonenumber = $request->input('phonenumber');
-	    	$insert_data->street = $request->input('street');
-	    	$insert_data->city = $request->input('city');
-	    	$insert_data->state = $request->input('state');
-	    	$insert_data->zipp = $request->input('zipp');
-	    	$insert_data->mobilenumber = $request->input('mobilenumber');
-	    	$insert_data->landlinenumber = $request->input('landlinenumber');
-	    	$insert_data->fax = $request->input('fax');
-	    	$insert_data->email = $request->input('email');
-	    	$insert_data->yo = $request->input('yo');
+       
+            $insert_data->name = $request->input('name');
+            $insert_data->password = $request->input('password');
+            $insert_data->fname = $request->input('fname');
+            $insert_data->mname = $request->input('mname');
+            $insert_data->lname = $request->input('lname');
+            $insert_data->options = $request->input('options');
+            $insert_data->maritalstatus = $request->input('maritalstatus');
+            $insert_data->dob = $request->input('dob');
+            $insert_data->employment = $request->input('employment');
+            $insert_data->employer = $request->input('employer');
+            $insert_data->phonenumber = $request->input('phonenumber');
+            $insert_data->street = $request->input('street');
+            $insert_data->city = $request->input('city');
+            $insert_data->state = $request->input('state');
+            $insert_data->zipp = $request->input('zipp');
+            $insert_data->mobilenumber = $request->input('mobilenumber');
+            $insert_data->landlinenumber = $request->input('landlinenumber');
+            $insert_data->fax = $request->input('fax');
+            $insert_data->email = $request->input('email');
+            $insert_data->yo = $request->input('yo');
             $insert_data->confirmation_code = $confirmation_code;
 
-	    	if ($request->file('fileToUpload'))
-       		 {
-	            $image_temp_name = $request->file('fileToUpload')->getPathname();
-	            $image_name = $request->file('fileToUpload')->getClientOriginalName();
-	            $path = base_path() . '/public/img/';
-	            $request->file('fileToUpload')->move($path , $image_name);
-	            $insert_data->fileToUpload = $image_name;
-        	}
-	        else
-	        {
-	            $insert_data->fileToUpload = '';
-	        }
+            if ($request->file('fileToUpload'))
+            {
+                $image_temp_name = $request->file('fileToUpload')->getPathname();
+                $image_name = $request->file('fileToUpload')->getClientOriginalName();
+                $path = base_path() . '/public/img/';
+                $request->file('fileToUpload')->move($path , $image_name);
+                $insert_data->fileToUpload = $image_name;
+            }
+            else
+            {
+                $insert_data->fileToUpload = '';
+            }
 
             $user = new User;
             $name = Input::get('name');
-	    	#--------save data in database
-	        $data = array('key' => $confirmation_code, 'name' => $name);
+            #--------save data in database
+            $data = array('key' => $confirmation_code, 'name' => $name);
            
             \Mail::send('email_verify', $data, function($message) use($confirmation_code){
             $message->to(Input::get('email'), Input::get('name'))
@@ -117,9 +117,9 @@ class RegistrationController extends Controller
 
                 $insert_data->save();
 
-	    	return Redirect::to('/login')->withInput()->with('status', 'Please check your mail!'); 
-   	 	}
-	}
+            return Redirect::to('/login')->withInput()->with('status', 'Please check your mail!'); 
+        }
+    }
 
     public function confirm($confirmation_code)
     {

@@ -21,21 +21,4 @@
 </div>
 
 
-
-<!-- <div class = "row">
-	<div class = "col-lg-2 form-group">
-		
-	</div>
-
-	<div class = "col-lg-18 form-group">
-
-		<iframe src="https://calendar.google.com/calendar/embed?src=e8mdtf86gg48kc72i7coj7r4t8%40group.calendar.google.com&ctz=Asia/Calcutta" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-	</div>
-
-	<div class = "col-lg-2 form-group">
-
-	</div>
-
-</div> -->
-
 @stop

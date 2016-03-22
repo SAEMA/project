@@ -10,7 +10,6 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-//Route::('index','WebScraperController@getIndex');
 
 Route::get('/', function () {
     return view('home');
@@ -20,15 +19,14 @@ Route::get('/testas', function () {
     echo "dsfsd";
 });
 
-
 Route::get('my_calendar',  function () {
     return view('my_calendar');
 });
 
 Route::get('search', 'My_FlightController@search_page');	
 
-
 Route::post('search', 'My_FlightController@my_flight_book');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -41,31 +39,27 @@ Route::post('search', 'My_FlightController@my_flight_book');
 |
 */
 
-
-
 Route::group(['middleware' => 'web'], function () {
-
-
 
 	#handles authentication at login time-----------------------------------------------
     Route::auth();																		#
     #-----------------------------------------------------------------------------------
-
 
 	Route::get('auth/facebook', 'Auth\AuthController@redirectToProvider');
 	Route::get('auth/facebook/callback', 'Auth\AuthController@handleProviderCallback');
 	
 	Route::get('facebook_welcome',  function () {
     return view('facebook_welcome');
-});
+	});
 
 
     Route::get('/home', 'HomeController@index')->middleware('isActive');
 
-//    Route::get('home', array('as' => 'home', 'uses' => function(){
-//   return view('facebook_welcome');
-// }));
-   // Route::get('/home', 'HomeController@index');
+  	Route::get('home', array('as' => 'home', 'uses' => function(){	
+  	return view('facebook_welcome'); 
+	}))->middleware('isActive');
+
+	Route::post('home', 'Reset_pwdController@reset_pwd');
     #registration page -----------------------------------------------------------------
     #																					#
     #getting the registration page view-------------------------------------			#
@@ -178,35 +172,15 @@ Route::group(['middleware' => 'web'], function () {
 	#------------------------------------------------------------------------------------
 	Route::post('fetch_data', 'TweetController@posting_find_data');	
 
-	
+ 	$s = 'social.';
+	Route::get('/social/redirect/{provider}',   ['as' => $s . 'redirect',   'uses' => 'Auth\AuthController@getSocialRedirect']);
 
+	Route::get('/social/handle/{provider}',     ['as' => $s . 'handle',     'uses' => 'Auth\AuthController@getSocialHandle']);
 
-
-
-
-
- $s = 'social.';
-Route::get('/social/redirect/{provider}',   ['as' => $s . 'redirect',   'uses' => 'Auth\AuthController@getSocialRedirect']);
-
-Route::get('/social/handle/{provider}',     ['as' => $s . 'handle',     'uses' => 'Auth\AuthController@getSocialHandle']);
-
-
-
-Route::get('register/verify/{confirmationCode}', [
+	Route::get('register/verify/{confirmationCode}', [
     'as' => 'confirmation_path',
     'uses' => 'RegistrationController@confirm'
-]);
-
-
-    //return Twitter::getMentionsTimeline(['count' => 20, 'format' => 'json']);
-
-
-// Route::get('password/email', 'Auth\PasswordController@getEmail');
-// Route::post('password/email', 'Auth\PasswordController@postEmail');
-
-// // Password reset routes...
-// Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
-// Route::post('password/reset', 'Auth\PasswordController@postReset');
+	]);
 
 });
 

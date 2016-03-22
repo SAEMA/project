@@ -94,10 +94,10 @@ class AuthController extends Controller
      * @return Response
      */
     public function handleProviderCallback()
-    {dd("hi");
-
+    {
         try {
             $user = Socialite::driver('facebook')->user();
+          
         } catch (Exception $e) {
             return redirect('auth/facebook');
         }
@@ -106,7 +106,7 @@ class AuthController extends Controller
 
         Auth::login($authUser, true);
 
-        return redirect()->route('profile');
+        return redirect()->route('home');
     }
 
     /**
@@ -121,14 +121,14 @@ class AuthController extends Controller
 
         if ($authUser){
             return $authUser;
-        }
-
+        }     
         return User::create([
             'name' => $facebookUser->name,
             'email' => $facebookUser->email,
             'facebook_id' => $facebookUser->id,
             'avatar' => $facebookUser->avatar,
-            'activation' => '1'
+            'activation' => '1',
+            'password' => 'abc'
         ]);
     }
 }

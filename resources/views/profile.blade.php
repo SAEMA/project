@@ -7,7 +7,14 @@
 	<div class="col-lg-12 well">				
 		<form action="profile.php" method="post" enctype="multipart/form-data">							
 			<div class="col-lg-12 form-group">							
+				
+				@if ( Auth::user()->avatar == "" )
 				<img id="profilePic" src="img/{{ Auth::user()->fileToUpload }}" class="img-thumbnail"> 
+
+				@else
+				<img src="{{ Auth::user()->avatar }}" height="200" width="200" />
+
+				@endif
 				<br>
 				<hr>
 				<div class="row">

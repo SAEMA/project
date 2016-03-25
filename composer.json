@@ -15,7 +15,8 @@
         "fabpot/goutte": "^3.1",
         "anlutro/curl": "^1.4",
         "laravel/socialite": "^2.0",
-        "pingpong/facebook": "~2.0"
+        "pingpong/facebook": "~2.0",
+        "cornford/googlmapper": "2.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

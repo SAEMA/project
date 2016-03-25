@@ -157,6 +157,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         'Laravel\Socialite\SocialiteServiceProvider',
+       // 'Cornford\Googlmapper\MapperServiceProvider',
+
     ],
 
     /*
@@ -206,7 +208,9 @@ return [
         'Widget'    => Arrilot\Widgets\Facade::class,
         'AsyncWidget' => Arrilot\Widgets\AsyncFacade::class,
         'TwitterAPIExchange' => '\TwitterAPIExchange',
-        'Socialite' => Laravel\Socialite\Facades\Socialite::class
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        //'Mapper'         => 'Cornford\Googlmapper\Facades\MapperFacade',
+
 
     ],
 

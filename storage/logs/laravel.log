@@ -10255,3 +10255,35 @@ Stack trace:
 #63 /var/www/html/myproject/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #64 /var/www/html/myproject/server.php(21): require_once('/var/www/html/m...')
 #65 {main}  
+[2016-03-25 13:06:00] local.ERROR: exception 'ErrorException' with message 'Undefined variable: token' in /var/www/html/myproject/app/Http/routes.php:212
+Stack trace:
+#0 /var/www/html/myproject/app/Http/routes.php(212): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Undefined varia...', '/var/www/html/m...', 212, Array)
+#1 [internal function]: App\Providers\RouteServiceProvider->{closure}(Object(SammyK\LaravelFacebookSdk\LaravelFacebookSdk))
+#2 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Routing/Route.php(158): call_user_func_array(Object(Closure), Array)
+#3 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Routing/Route.php(137): Illuminate\Routing\Route->runCallable(Object(Illuminate\Http\Request))
+#4 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Routing/Router.php(724): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#5 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#6 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(52): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#7 [internal function]: Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#8 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#9 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Routing/Router.php(726): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#10 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Routing/Router.php(699): Illuminate\Routing\Router->runRouteWithinStack(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request))
+#11 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Routing/Router.php(675): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#12 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(246): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#13 [internal function]: Illuminate\Foundation\Http\Kernel->Illuminate\Foundation\Http\{closure}(Object(Illuminate\Http\Request))
+#14 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(52): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#15 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php(44): Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#16 [internal function]: Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode->handle(Object(Illuminate\Http\Request), Object(Closure))
+#17 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(124): call_user_func_array(Array, Array)
+#18 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
+#19 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(32): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#20 [internal function]: Illuminate\Routing\Pipeline->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
+#21 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
+#22 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(132): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+#23 /var/www/html/myproject/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(99): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter(Object(Illuminate\Http\Request))
+#24 /var/www/html/myproject/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
+#25 /var/www/html/myproject/server.php(21): require_once('/var/www/html/m...')
+#26 {main}  
+[2016-03-25 13:06:40] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to undefined function getaccesstoken()' in /var/www/html/myproject/app/Http/routes.php:200
+Stack trace:
+#0 {main}  

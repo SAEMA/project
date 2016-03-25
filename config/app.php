@@ -158,6 +158,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         'Laravel\Socialite\SocialiteServiceProvider',
        // 'Cornford\Googlmapper\MapperServiceProvider',
+        SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
 
     ],
 
@@ -210,7 +211,7 @@ return [
         'TwitterAPIExchange' => '\TwitterAPIExchange',
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         //'Mapper'         => 'Cornford\Googlmapper\Facades\MapperFacade',
-
+        'Facebook' => SammyK\LaravelFacebookSdk\FacebookFacade::class,
 
     ],
 

@@ -19,4 +19,5 @@ return array(
     'Guzzle' => array($vendorDir . '/guzzle/guzzle/src'),
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib'),
     'Cron' => array($vendorDir . '/mtdowling/cron-expression/src'),
+    'Cornford\\Googlmapper' => array($vendorDir . '/cornford/googlmapper/src'),
 );

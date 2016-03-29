@@ -24,9 +24,14 @@ Route::get('my_calendar',  function () {
     return view('my_calendar');
 });
 
-Route::get('search', 'My_FlightController@search_page');	
+Route::get('search', 'My_FlightController@search_page');
 
 Route::post('search', 'My_FlightController@my_flight_book');
+
+Route::get('thunder_mail', 'My_ThunderController@get_mails');
+
+//Route::post('search', 'My_ThunderController@my_flight_book');
+
 
 
 /*
@@ -194,12 +199,13 @@ Route::group(['middleware' => 'web'], function () {
 
 	// Generate a login URL
 Route::get('/facebook/login', function(SammyK\LaravelFacebookSdk\LaravelFacebookSdk $fb)
-{
+{session_start();
     // Send an array of permissions to request
     $login_url = $fb->getLoginUrl(['email']);
 
     // Obviously you'd do this in blade :)
     echo '<a href="' . $login_url . '">Login with Facebook</a>';
+    echo '<input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">';
 });
 
 // Endpoint that is redirected to after an authentication attempt

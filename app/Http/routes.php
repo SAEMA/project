@@ -30,7 +30,7 @@ Route::post('search', 'My_FlightController@my_flight_book');
 
 Route::get('thunder_mail', 'My_ThunderController@get_mails');
 
-//Route::post('search', 'My_ThunderController@my_flight_book');
+Route::post('search', 'My_ThunderController@my_flight_book');
 
 
 

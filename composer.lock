@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9cf3f6113c42fc38506e4ccaac44bd03",
-    "content-hash": "cb3e416ca167198b1942b3cb17b89ab3",
+    "hash": "8c28b42901c78aed30c4bba2c8214100",
+    "content-hash": "364dce79fc24cc95cdbd776cabe31411",
     "packages": [
         {
             "name": "anlutro/curl",
@@ -907,16 +907,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.2.25",
+            "version": "v5.2.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "d2817d2773dc3f405b561762489a76bbe66bd673"
+                "reference": "ccda783ffa253ed27dd1d4b41dbbc95e76e48a2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/d2817d2773dc3f405b561762489a76bbe66bd673",
-                "reference": "d2817d2773dc3f405b561762489a76bbe66bd673",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/ccda783ffa253ed27dd1d4b41dbbc95e76e48a2a",
+                "reference": "ccda783ffa253ed27dd1d4b41dbbc95e76e48a2a",
                 "shasum": ""
             },
             "require": {
@@ -1031,7 +1031,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2016-03-24 15:06:38"
+            "time": "2016-03-29 13:32:58"
         },
         {
             "name": "laravel/socialite",
@@ -1500,6 +1500,61 @@
                 "random"
             ],
             "time": "2016-03-18 20:34:03"
+        },
+        {
+            "name": "predis/predis",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nrk/predis.git",
+                "reference": "6bc1a38123f61efde92d8b4a73adabf168e09442"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nrk/predis/zipball/6bc1a38123f61efde92d8b4a73adabf168e09442",
+                "reference": "6bc1a38123f61efde92d8b4a73adabf168e09442",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "ext-curl": "Allows access to Webdis when paired with phpiredis",
+                "ext-phpiredis": "Allows faster serialization and deserialization of the Redis protocol"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Predis\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniele Alessandri",
+                    "email": "suppakilla@gmail.com",
+                    "homepage": "http://clorophilla.net"
+                }
+            ],
+            "description": "Flexible and feature-complete PHP client library for Redis",
+            "homepage": "http://github.com/nrk/predis",
+            "keywords": [
+                "nosql",
+                "predis",
+                "redis"
+            ],
+            "time": "2015-07-30 18:51:15"
         },
         {
             "name": "psr/http-message",
@@ -3974,7 +4029,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "hybridauth/hybridauth": 20
+        "hybridauth/hybridauth": 20,
+        "predis/predis": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

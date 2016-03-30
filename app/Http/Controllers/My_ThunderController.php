@@ -35,50 +35,23 @@ class My_ThunderController extends Controller
 		$last_page = $count_total % 10;
 		$number_of_pages = ($count_total-$last_page)/10;
 
-		// Fetch an overview for all messages in INBOX
 		$result = imap_fetch_overview($mbox,"1:{$MC->Nmsgs}",0);
 		
-
-		$i = $count_total;
-		$my_array = array();
-
-$str = "";
-	foreach ($result as $overview) 
-	{
-
-		if ($overview->seen != 1)
-		{	
-			$str .= "<strong>";
-			$str .= "<tr>";
-			//$count ++;
-		    $str .= "<td>[{$overview->msgno}] ({$overview->date}) </td>";
-		    $str .= "<td> - </td>"; 
-		    $str .= "<td>From: {$overview->from} --- {$overview->subject}</td>";
-		    $str .= "<td>unseen</td>";
-		    $str .= "</strong>";
-		    $str .= "</tr>";
-		    // $my_array[$i] = $str;
-		    // $i--;
-		    // $str = "";
-		}
-		else
+		$msg = array();
+		$i = 0;
+		foreach ($result as $overview) 
 		{
-			$str .= "<tr>";
-			//$count ++;
-		    $str .= "<td>[{$overview->msgno}] ({$overview->date}) </td>";
-		    $str .= "<td> - </td>"; 
-		    $str .= "<td>From: {$overview->from} --- {$overview->subject}</td>";
-		    $str .= "<td>seen</td>";
-		    $str .= "</tr>";
-		    // $my_array[$i] = $str;
-		    // $i--;
-		    // $str = "";
+			$message = imap_fetchbody($mbox,$overview->msgno,1.1);
+		 	$msg[$i] = $message;
+		 	$i++;
 		}
-	}
+
+		krsort($result);
+
  	    return view('my_thunder_email')
- 	     ->with('count', $count_total )
- 	     ->with('email', $str);
- 	     
+ 	     ->with('number', $number_of_pages)
+ 	     ->with('mail_body', $msg)
+ 	     ->with('result', $result);
 
     }
 }

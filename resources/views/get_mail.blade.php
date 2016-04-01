@@ -14,8 +14,8 @@
 <br>
 <br>
 
-<form method="POST">
+
 <button type="submit" name="submit" class="btn btn-primary"  id="click_me" >GET MAILS</button>
-</form>
+
 </body>
 </html>

@@ -28,11 +28,14 @@ Route::get('search', 'My_FlightController@search_page');
 
 Route::post('search', 'My_FlightController@my_flight_book');
 
+//here the mail work starts
+
 Route::get('mail_page', 'My_ThunderController@my_page');
 
 Route::post('mail_page', 'My_ThunderController@show_mails');
 
 Route::post('get_auto_mail', 'My_ThunderController@get_mails');
+
 //Route::post('search', 'My_ThunderController@my_flight_book');
 
 

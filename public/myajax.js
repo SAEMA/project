@@ -2,17 +2,46 @@ $(document).ready(function(){
 
 console.log("here");
 
-     $.ajax({
+    $.ajax({
                 method: 'POST',
                 url: 'get_auto_mail',
-                success: function() {
+                success: function(value) {
+                    datas = value.val;
+                    
+                }
+                  
+            });
 
-                    console.log("successsful");
+$("#click_me").click(function(){
+console.log ('hi');
+
+console.log(typeof(datas));
+//var mail_data = data;
+console.log(datas);
+
+//var json = JSON2.stringify(datas );
+var saema = 'saema';
+
+    $.ajax({
+                method: 'POST',
+                url: 'mail_page',
+                dataType: 'html',
+                data: {
+                    datas: JSON.stringify(datas),
+                    saema: saema,                       
+                },
+                success: function(response) {
+                   console.log("success"); 
+                   console.log(response);
+                    
                 }
                   
             });
 
 
+
+ });
+//datas: JSON.stringify(datas),
 		
             $(".get_me button").click(function(){
                 console.log("i am here");

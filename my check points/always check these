@@ -42,3 +42,8 @@ for getting mails from various mail ids
 http://diveintohtml5.info/storage.html
 
 for cache storage
+
+
+config file changes or http://stackoverflow.com/questions/25189427/global-variable-for-all-controller-and-views
+http://stackoverflow.com/questions/32942379/global-variable-in-laravel-controller
+for the value fetched once used at all times

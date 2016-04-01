@@ -10,41 +10,42 @@
   <script src="myajax.js"></script>
 </head>
 <body>
- <?php $i = 0 ; ?>
+
+ 
 		<h3>My Thunderbird Mails</h3>
 		<br><br><table class='table table-striped' id = 'mymail'>
 		<tr><th>Date</th><th>-</th><th>From --- Subject</th><th>Seen/Unseen</th>
 
 		
-			@foreach ($result AS $overview)
+			@for ($i = 0 ; $i < 10 ; $i++)
 
-					@if ( $overview->seen !=1 )
+					@if ( $seen[$i] !=1 )
 
 					<tr>
-					<td>{{ $overview->msgno }} {{ $overview->date}}</td>
+					<td>{{ $msgno[$i] }} {{ $date[$i] }}</td>
 					<td> - </td>
-					<td >From {{$overview->from}} --- {{$overview->subject}}</td>
+					<td >From {{ $from[$i] }} --- {{$subject[$i]}}</td>
 					<td>Unseen</td>
 					</tr>
-					<tr><pre>{{ $mail_body[$i] }}</pre></tr>
+					
 					
 
 					@else
 					
 					<tr>
-					<td>{{ $overview->msgno }} {{ $overview->date}}</td>
+					<td>{{ $msgno[$i] }} {{ $date[$i] }}</td>
 					<td> - </td>
-					<td>From {{$overview->from}} --- {{$overview->subject}}</td>
-					<td>seen</td>
+					<td >From {{ $from[$i] }} --- {{$subject[$i]}}</td>
+					<td>Seen</td>
 					</tr>
-					<tr><pre>{{ $mail_body[$i] }}</pre></tr>
+					
 					
 
 					@endif
 
-			<?php $i++; ?>
+			
 
-			@endforeach
+			@endfor
 		
 
 			</table>
@@ -52,11 +53,9 @@
 
 		<form method="POST">
 		<div class="get_me">
-			@for ( $i = 1; $i <= $number; $i++ )
+			
 
-				<button type="submit" name="submit" class="btn btn-primary"  id="{{$i}}" >{{ $i }}</button>
-
-			@endfor
+				
 		</div>
 		</form>
 

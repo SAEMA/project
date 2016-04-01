@@ -1,38 +1,34 @@
 $(document).ready(function(){
 
-console.log("here");
-
     $.ajax({
                 method: 'POST',
                 url: 'get_auto_mail',
                 success: function(value) {
                     datas = value.val;
+                    num = value.num;
+                    total = value.total;
                     
                 }
                   
             });
 
-$("#click_me").click(function(){
-console.log ('hi');
+$("#1").click(function(){
 
-console.log(typeof(datas));
-//var mail_data = data;
-console.log(datas);
-
-//var json = JSON2.stringify(datas );
-var saema = 'saema';
-
+var id = this.id; 
     $.ajax({
                 method: 'POST',
                 url: 'mail_page',
                 dataType: 'html',
                 data: {
                     datas: JSON.stringify(datas),
-                    saema: saema,                       
+                    num: num, 
+                    id: id, 
+                    total: total,                     
                 },
                 success: function(response) {
-                   console.log("success"); 
-                   console.log(response);
+                    
+                    $("#1").hide();
+                    $("#star").html( response );
                     
                 }
                   
@@ -42,8 +38,37 @@ var saema = 'saema';
 
  });
 //datas: JSON.stringify(datas),
-		
-            $(".get_me button").click(function(){
+		$('body').on('click', '#get_me button', function( e ) {
+           
+            var id = this.id;
+            console.log(id);
+
+             $.ajax({
+                method: 'POST',
+                url: 'mail_page',
+                dataType: 'html',
+                data: {
+                    datas: JSON.stringify(datas),
+                    num: num, 
+                    id: id, 
+                    total: total,                     
+                },
+                success: function(response) {
+                    
+                    $("#1").hide();
+                    $("#star").html( response );
+                    
+                }
+                  
+            });
+
+
+
+
+        });
+
+
+            $("#get_me button").click(function(){
                 console.log("i am here");
                 var selected = this.id;
                 console.log(selected);
@@ -58,7 +83,7 @@ var saema = 'saema';
                 },
                 success: function(value) {
                     console.log("success");
-                    $("#to_me1").html( value.hr );
+                        $("#to_me1").html( value.hr );
                       $("#to_me2").html( value.email );
                       $("#to_me3").html( value.fr );
                 }

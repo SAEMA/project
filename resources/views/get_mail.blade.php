@@ -14,8 +14,8 @@
 <br>
 <br>
 
-
-<button type="submit" name="submit" class="btn btn-primary"  id="click_me" >GET MAILS</button>
+<div id="star"></div>
+<button type="submit" name="submit" class="btn btn-primary"  id="1" >GET MAILS</button>
 
 </body>
 </html>

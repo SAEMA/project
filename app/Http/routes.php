@@ -36,6 +36,10 @@ Route::post('mail_page', 'My_ThunderController@show_mails');
 
 Route::post('get_auto_mail', 'My_ThunderController@get_mails');
 
+Route::get('testing', 'My_ThunderController@get_my_attatchments');
+
+Route::get('getAttachments', 'My_ThunderController@getAttachments');
+
 //Route::post('search', 'My_ThunderController@my_flight_book');
 
 

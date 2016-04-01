@@ -44,8 +44,7 @@ class My_ThunderController extends Controller
 		$this->number_of_pages = ($count_total-$last_page)/10;
 
 		$this->result = imap_fetch_overview($mbox,"1:{$MC->Nmsgs}", 0);
-		//dd($this->result);
-		//$this->msg = array();
+		
 		$i = 0;
 		foreach ($this->result as $overview) 
 		{
@@ -55,39 +54,28 @@ class My_ThunderController extends Controller
 		 	\Cache::put( $overview->msgno, $overview->subject, 5 );
 		}
 		
-		// if (\Cache::has(23))
-		// {
-		// 	dd("yes");	
-		// }
-
+		
 		krsort($this->result);
-		// \Session::put('value', $this->result);
-
-		// print_r( \Session::get('value'));
-		// exit;
+		
 		$str[0] = 'success';
 		$result_json = array();
-		// $returnHTML = view('job.userjobs')->with('userjobs', $userjobs)->render();
-		// return response()->json(array('success' => true, 'html'=>$returnHTML));
+		
 		$result_json['val'] = $this->result;
-		//$this->result;
+		$result_json['num'] = $this->number_of_pages;
+		$result_json['total'] = $count_total;
 		return response()->json( $result_json );
 
-		//return response()->json($str);
     }
 
     public function show_mails(Request $request)
     {
-    	//echo "checking_saema";
-    	$temp = $request->saema;
-
-    	//echo $temp;
-
-    	///echo $request->datas;
+    	
+    	//$temp = $request->saema;
+    	$num = $request->num;
+    	$id = $request->id;
+    	$total = $request->total;
     	$rs = json_decode($request->datas);
-    	//echo "<pre>";
-    	//print_r( $rs );
-
+    	
     	//store 1)from 2)subject 3)date 4)seen 5)msgno 
     	$from = array();
     	$subject = array();
@@ -105,17 +93,49 @@ class My_ThunderController extends Controller
     		$i++;
     	}
 
-    	$my_page = view('my_thunder_email')
+    	return  view('my_thunder_email')
  	     ->with('from', $from)
  	     ->with('subject', $subject)
  	     ->with('date', $date)
  	     ->with('seen', $seen)
- 	     ->with('msgno', $msgno);
-
-		$arr = array();
-		$arr['page'] = $my_page;
-		//$data = array('status' => 'ok', 'url' => $redirect_url ); 
-		return $my_page;
+ 	     ->with('msgno', $msgno)
+ 	     ->with('id', $id)
+ 	     ->with('total', $total)
+ 	     ->with('number', $num);
+		
     }
 
+    public function get_my_attatchments()
+    {
+    	$imap = imap_open("{email.mindfiresolutions.com:143}INBOX", "saema.miftah@mindfiresolutions.com", "1mfmail2016#")
+     		or die("can't connect: " . imap_last_error());
+
+		// delibertely choose a message with an attachment
+		$message = 78;
+
+		// // dump out every property of the message
+		echo "<pre>\n\n";
+		print_r(imap_fetchstructure($imap, $message));
+		echo "\n\n</pre>";
+		exit;
+
+		$part = imap_fetchstructure($imap, $message);
+
+		$numparts = count($part->parts);
+		$attatchments = array();
+		
+		$partNum = "";
+		
+		for ( $i = 0; $i < $numparts; $i++ )
+		{
+			if ( isset($part->parts[$i]->disposition) )
+			{
+				echo "<pre>";
+				echo $part->parts[$i]->disposition;
+			}
+			else echo "no";
+		}
+	}
 }
+		
+		

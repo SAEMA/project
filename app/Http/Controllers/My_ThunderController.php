@@ -107,35 +107,188 @@ class My_ThunderController extends Controller
 
     public function get_my_attatchments()
     {
-    	$imap = imap_open("{email.mindfiresolutions.com:143}INBOX", "saema.miftah@mindfiresolutions.com", "1mfmail2016#")
-     		or die("can't connect: " . imap_last_error());
 
-		// delibertely choose a message with an attachment
-		$message = 78;
+    	set_time_limit(3000);
 
-		// // dump out every property of the message
-		echo "<pre>\n\n";
-		print_r(imap_fetchstructure($imap, $message));
-		echo "\n\n</pre>";
-		exit;
+    	$hostname = '{email.mindfiresolutions.com:143}INBOX';
+		$username = 'saema.miftah@mindfiresolutions.com'; 
+		$password = '1mfmail2016#';
 
-		$part = imap_fetchstructure($imap, $message);
+		$inbox = imap_open($hostname,$username,$password) or die('Cannot connect to Gmail: ' . imap_last_error());
 
-		$numparts = count($part->parts);
-		$attatchments = array();
-		
-		$partNum = "";
-		
-		for ( $i = 0; $i < $numparts; $i++ )
+		$emails = imap_search($inbox,'ALL');
+
+		$max_emails = 16;
+
+		$from = array();
+		$subject = array();
+		$date = array();
+		$seen = array();
+		$msgno = array();
+
+		$x = 0;
+		if ( $emails )
 		{
-			if ( isset($part->parts[$i]->disposition) )
-			{
-				echo "<pre>";
-				echo $part->parts[$i]->disposition;
-			}
-			else echo "no";
-		}
-	}
+			$count = 1;
+			rsort($emails);//------------for sorting and getting the recent ones
+			foreach ( $emails as $email_number ) 
+    		{
+    			$overview = imap_fetch_overview($inbox,$email_number,0);
+    			// echo "<pre>";
+    			// print_r($overview);
+    			// exit;
+    			$message = imap_fetchbody($inbox,$email_number,2);
+    			// echo "<pre>";
+    			// print_r($message);
+    			$structure = imap_fetchstructure($inbox, $email_number);
+    			// echo "<pre>";
+    			// print_r($structure);
+    			// exit;
+    			echo "<br>" . $from[$x] = $overview[0]->from;
+    			echo "<br>" . $subject[$x] = $overview[0]->subject;
+    			echo "<br>" . $date[$x] = $overview[0]->date;
+    			echo "<br>" . $seen[$x] = $overview[0]->seen;
+    			echo "<br>" . $msgno[$x] = $overview[0]->msgno;
+    			// echo  $overview[0]->from . "----------------from";
+       //  		echo "<br>" . $overview[0]->subject . "-----------subject<br>";
+    			$x++;
+    			$attachments = array();
+
+    			if ( isset($structure->parts) && count($structure->parts) ) 
+        		{
+            	
+	            	for ( $i = 0; $i < count($structure->parts); $i++ ) 
+	            	{
+	                	$attachments[$i] = array(
+	                    	'is_attachment' => false,
+	                    	'filename' => '',
+	                    	'name' => '',
+	                    	'attachment' => ''
+	                	);
+
+	                	if ( $structure->parts[$i]->ifdparameters ) 
+	                	{
+	                    	foreach ( $structure->parts[$i]->dparameters as $object ) 
+	                    	{
+	                        	if ( strtolower($object->attribute) == 'filename' ) 
+	                        	{
+	                            	$attachments[$i]['is_attachment'] = true;
+	                            	$attachments[$i]['filename'] = $object->value;
+	                        	}
+	                    	}
+	                	}
+
+	                	if ( $structure->parts[$i]->ifparameters ) 
+	                	{
+	                    	foreach ( $structure->parts[$i]->parameters as $object ) 
+	                    	{
+	                        	if ( strtolower($object->attribute) == 'name' ) 
+	                        	{
+	                            	$attachments[$i]['is_attachment'] = true;
+	                            	$attachments[$i]['name'] = $object->value;
+	                        	}
+	                    	}
+	                	}
+
+	                	if ( $attachments[$i]['is_attachment'] ) 
+	               		{
+		                    $attachments[$i]['attachment'] = imap_fetchbody($inbox, $email_number, $i+1);
+	 
+	                    
+	                    	if ( $structure->parts[$i]->encoding == 3 ) 
+	                    	{ 
+	                        	$attachments[$i]['attachment'] = base64_decode($attachments[$i]['attachment']);
+	                    	}
+	                    
+	                    	elseif ( $structure->parts[$i]->encoding == 4 ) 
+	                    	{ 
+	                        	$attachments[$i]['attachment'] = quoted_printable_decode($attachments[$i]['attachment']);
+	                    	}
+	                	}
+
+	    			}
+				}
+
+				foreach ( $attachments as $attachment )
+      		    {
+                	if ( $attachment['is_attachment'] == 1 )
+            		{
+                		echo $filename = $attachment['name']; 
+                		echo "<br>";
+
+		                if ( empty($filename) )
+		                {
+		                	$filename = $attachment['filename'];
+		 				}
+
+		                if ( empty($filename) ) 
+		                {
+		                	$filename = time() . ".dat";
+		 				}
+
+		 				$fp = fopen($email_number . "-" . $filename, "w+");
+                		fwrite($fp, $attachment['attachment']);
+                		fclose($fp);
+                	}
+                }
+
+                if ( $count++ >= $max_emails ) 
+                {
+                	break;
+                }
+            }
+        }
+
+        // foreach ($overview AS $look)
+        // {
+        // 	echo $from = $look->from;
+        // 	echo "<br>" . $subject = $look->subject . "<br>";
+
+        // }
+    	imap_close($inbox);
+    }
+
 }
+
+
+
+
+
+
+
+//     	$imap = imap_open("{email.mindfiresolutions.com:143}INBOX", "saema.miftah@mindfiresolutions.com", "1mfmail2016#")
+//      		or die("can't connect: " . imap_last_error());
+
+// 		// delibertely choose a message with an attachment
+// 		$message = 75;
+
+// 		// // dump out every property of the message
+// 		// echo "<pre>\n\n";
+// 		// print_r(imap_fetchstructure($imap, $message));
+// 		// echo "\n\n</pre>";
+// 		// exit;
+
+// 		$part = imap_fetchstructure($imap, $message);
+
+// 		$numparts = count($part->parts);
+// 		$attatchments = array();
+		
+// 		$partNum = "";
+		
+// 		for ( $i = 0; $i < $numparts; $i++ )
+// 		{
+// 			if ( isset($part->parts[$i]->disposition) )
+// 			{
+// 				echo "<pre>";
+// 				echo $part->parts[$i]->disposition;
+// 				echo "<br>";
+// 				echo $part->parts[$i]->dparameters[0]->value;
+// 			}
+// 			else echo "no";
+// 		}
+// 	}
+// 	}
+
+// }
 		
 		

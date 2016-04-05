@@ -16,21 +16,23 @@ use Illuminate\Support\MessageBag;
 use App\Http\Controllers\Hash;
 
 /**
-*Class that handles the jgrid section
-*It also returns the view
+*Class that handles the jgrid section ie displays the jqgrid only if the user is admin.
+*It also returns the view of the jqgrid or redirects the user(if not an admin) to the 
+*profile page.
 */
 class AdminController extends Controller
 {
-	#
-	#Function that returns the view of the jqgrid 
-	#
+	/*
+	*Function that returns the view of the jqgrid.
+	*/
 	public function return_view()
     {
     	return view('jqgrid');
     }
-    #
-	#Function that returns the data of the jqgrid and aslo performs the searching 
-	#
+
+    /*
+	*Function that returns the data of the jqgrid and aslo performs the searching.
+	*/
     public function make_table(Request $request)
     {
     	if($request->searchField && $request->searchString)
@@ -93,17 +95,17 @@ class AdminController extends Controller
     	return response()->json(User::all());
     }
 
-    #
-	#Function that returns the data of the subgrid of the jqgrid 
-	#
+    /*
+	*Function that returns the data of the subgrid of the jqgrid.
+	*/
     public function make_subgrid(Request $request)
     {
     	return response()->json(User::all());
     }
 
-    #
-	#Function for allowing the edit and multiple as well as single delete of rows in the jqgrid 
-	#
+    /*
+	*Function for allowing the edit and multiple as well as single delete of rows in the jqgrid. 
+	*/
     public function edit_table(Request $request)
     {
     	if ($request->oper == 'del')
@@ -112,14 +114,14 @@ class AdminController extends Controller
     		$stringid = explode(',', $stringid);
 			$i = 0;
 			
-            #for counting the number of items selected to delete
+            /*For counting the number of items selected to delete.*/
 			foreach ($stringid as $key => $value)
 			{
 				$id[$i] = $value;
 				$i++;
 			}
 			
-            #if only one item selected to delete
+            /*If only one item selected to delete*/
 			if (1 == $i)
 			{
 				DB::table('users')->where('id',$id[0] )->delete();

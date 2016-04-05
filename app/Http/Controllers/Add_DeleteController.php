@@ -17,14 +17,14 @@ use Illuminate\Support\MessageBag;
 use App\Http\Controllers\Hash;
 
 /**
-*Class that handles the addition and deltetion of roles, resources and operations
-*It also returns the view
+*Class that handles the addition and deltetion of roles, resources and operations.
+*It also returns the view for the add / delete page .
 */
 class Add_DeleteController extends Controller
 {
-	#
-	#Function that returns the view of the add and delete 
-	#
+	/*
+	*Function that returns the view of the add and delete 
+	*/
 	public function return_view()
     {
 		if (\Auth::check())
@@ -40,12 +40,13 @@ class Add_DeleteController extends Controller
         	return redirect('login');
      	}
     }
-    #
-    #Function that handles addition and deletion
-    #
+    
+    /*
+    *Function that handles addition and deletion requests
+    */
     public function add_new_or_delete(Request $request)
     {
-    	#for role addition
+    	/*for role addition*/
     	if ($request->addroles)
 		{
 			$data_to_insert = $request->newroles;
@@ -57,7 +58,7 @@ class Add_DeleteController extends Controller
 			return redirect('add_delete')->with('operation', 'Successful addition!');
 		}
 
-		#for operation addition
+		/*for operation addition*/
     	elseif ($request->addoperation)
 		{
 			$data_to_insert = $request->newoperation;
@@ -70,7 +71,7 @@ class Add_DeleteController extends Controller
 			return redirect('add_delete'); 
 		}
 
-		#for resource addition
+		/*for resource addition*/
     	elseif ($request->addresources)
 		{
 			$data_to_insert = $request->newresources;
@@ -83,7 +84,7 @@ class Add_DeleteController extends Controller
 			return redirect('add_delete');
 		}
 
-		#for deleting roles 
+		/*for deleting roles*/ 
     	elseif ($request->deleteroles)
 		{
 			$data_to_delete = $request->roles;
@@ -96,7 +97,7 @@ class Add_DeleteController extends Controller
 			return redirect('add_delete');
 		}
 
-		#for deleting operations 
+		/*for deleting operations*/ 
     	elseif ($request->deleteoperation)
 		{
 			$data_to_delete = $request->operation;
@@ -109,7 +110,7 @@ class Add_DeleteController extends Controller
 			return redirect('add_delete');
 		}
 
-		#for deleting resources
+		/*for deleting resources*/
     	elseif ($request->deleteresources)
 		{
 			$data_to_delete = $request->resources;

@@ -14,14 +14,14 @@ use Illuminate\Support\MessageBag;
 use App\Http\Controllers\Hash;
 
 /**
-*Class that handles the edditing the user profile
-*It also returns the view
+*Class that handles the editing the user profile
+*It also returns the view.
 */
 class EditController extends Controller
 {
-    #
-    #Function that returns the view of the edit page
-    #
+    /*
+    *Function that returns the view of the edit page.
+    */
 	public function return_view()
     {
         if (\Auth::check()) 
@@ -36,9 +36,9 @@ class EditController extends Controller
         }
     }
 
-    #
-    #Function that updates the data of the particular user
-    #
+    /*
+    *Function that updates the data of the respective user who requests edit by clicking the edit *button.
+    */
     public function update_data(Request $request)
     {
     	$this->validate($request , [

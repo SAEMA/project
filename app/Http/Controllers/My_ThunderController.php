@@ -17,7 +17,7 @@ use Illuminate\Support\MessageBag;
 use App\Http\Controllers\Hash;
 
 /**
-*Class that handles the thunderbird mail access
+*Class that handles the thunderbird mail access for the mindfire account. It can be used for the *gmail accounts as well ie for any web client.
 *It also returns the view
 */
 class My_ThunderController extends Controller
@@ -26,11 +26,18 @@ class My_ThunderController extends Controller
 	private $number_of_pages;
 	private $msg = array();
 
+	/*
+	*Function that returns the view of a button that gets the mail.In the background however
+	*using ajax we are getting that mails and storing it to reduce the waiting time hence *causing minimum discomfort to the user.
+	*/
 	public function my_page()
 	{
 		return view('get_mail');
 	}
 
+	/*
+	*Function that is getting mails from my mail account.This function is called through ajax as *soon as the starting page loads.
+	*/
     public function get_mails(Request $request)
     {
     	$mbox = imap_open("{email.mindfiresolutions.com:143}INBOX", "saema.miftah@mindfiresolutions.com", "1mfmail2016#")
@@ -54,8 +61,7 @@ class My_ThunderController extends Controller
 		 	\Cache::put( $overview->msgno, $overview->subject, 5 );
 		}
 		
-		
-		krsort($this->result);
+		krsort($this->result);/*This sorting does not help.Please use only rsort.*/
 		
 		$str[0] = 'success';
 		$result_json = array();
@@ -67,22 +73,25 @@ class My_ThunderController extends Controller
 
     }
 
+    /*
+    *Function that receives the already fetched mails through ajax call earlier and sored in a *variable. The variable is processed ie loop through each and get the "from", "subject", *"seen", "date" and "msgno".
+    */
     public function show_mails(Request $request)
     {
-    	
-    	//$temp = $request->saema;
     	$num = $request->num;
     	$id = $request->id;
     	$total = $request->total;
     	$rs = json_decode($request->datas);
     	
-    	//store 1)from 2)subject 3)date 4)seen 5)msgno 
+    	/*Store 1)from 2)subject 3)date 4)seen 5)msgno.*/
     	$from = array();
     	$subject = array();
     	$date = array();
     	$seen = array();
     	$msgno = array();
-    	$i = 0 ;
+    	$i = 0;
+    	
+    	/*Loop through and store the value in respective variables.*/
     	foreach ( $rs AS $rrs )
     	{
     		$from[$i] = $rrs->from;
@@ -216,6 +225,9 @@ class My_ThunderController extends Controller
                 		echo $filename = $attachment['name']; 
                 		echo "<br>";
 
+                		$url = asset($filename);
+                	//	echo "<a href='/" . $url . "'>" . $url . "</a>";
+
 		                if ( empty($filename) )
 		                {
 		                	$filename = $attachment['filename'];
@@ -229,6 +241,7 @@ class My_ThunderController extends Controller
 		 				$fp = fopen($email_number . "-" . $filename, "w+");
                 		fwrite($fp, $attachment['attachment']);
                 		fclose($fp);
+                		echo "<a href='/" . $email_number . "-" . $filename . "'>" . $fp . ">here</a>";
                 	}
                 }
 
@@ -245,6 +258,11 @@ class My_ThunderController extends Controller
         // 	echo "<br>" . $subject = $look->subject . "<br>";
 
         // }
+
+        foreach ($attachments as $view)
+        {
+        	
+        }
     	imap_close($inbox);
     }
 

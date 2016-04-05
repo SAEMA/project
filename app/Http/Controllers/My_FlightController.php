@@ -17,59 +17,65 @@ use Illuminate\Support\MessageBag;
 use App\Http\Controllers\Hash;
 
 /**
-*Class that handles the addition and deltetion of roles, resources and operations
-*It also returns the view
+*Class that performs scraping kayak.com and getting flight details from that site using DOM *parser.
+*It also returns the view.
 */
 class My_FlightController extends Controller
 {
-
+    /*
+    *Function that returns the view that takes user input of where to go(search box).
+    */
     public function search_page()
     {
         return view('search_myflight');
     }
 
+    /*
+    *Takes the input from user and returns all flights from India to that place.
+    *The place for instance say "LOndon" is matched in database and equivalent code is found
+    *lon that is used in the url to fetch data.
+    */
     public function my_flight_book(Request $request)
     {
-
         $departure_date = $request->from_date;
         $arrival_date = $request->to_date;
         $search_from = $request->search_from;
-        $search_to = $request->search_to;
+        $search_to = $request->search_to;  
 
-       
-
-        //$db_search = $request->search_item;
+        /*$db_search = $request->search_item;____ this is for searching from India Please ignore
+        *Only for reference.
+        */
 
         $url_part1 = Capital::where('input', $search_from)->first();
         $url_part2 = Capital::where('input', $search_to)->first();
 
         if ( $search_from == "India")
-        //this url when from india 
+        /*This url when from India.*/ 
         {
             $total_url = 'https://www.kayak.co.in/flight-routes/India-IN0/' . $url_part2['name'];
         }
         else 
         {
             $total_url = 'https://www.kayak.co.in/flights/' . $url_part1['combo'] . '-' . $url_part2['combo'] . '/' . $departure_date . '/'. $arrival_date;  
-            
         }
-        
-        $html = file_get_contents($total_url); //get the html returned from the following url
+
+        /*Get the html returned from the following url using DOM model.*/
+        $html = file_get_contents($total_url); 
           
         $flight_doc = new \DOMDocument();
 
-        libxml_use_internal_errors(TRUE); //disable libxml errors
+        /*Disable libxml errors.*/
+        libxml_use_internal_errors(TRUE); 
 
         if ( ! empty($html) )
-        { //if any html is actually returned
-
+        { 
+            /*If any html is actually returned.*/
             $flight_doc->loadHTML($html);
-            libxml_clear_errors(); //remove errors for html
+            /*Remove errors for html.*/
+            libxml_clear_errors(); 
               
             $flight_xpath = new \DOMXPath($flight_doc);
-
-
-            //for else part
+            /*for else part
             //target="_blank" class="results_price bookitlongerprice">
             // //div class="flighttime flightTimeDeparture"
             // $flight_row1 = $flight_xpath->query('//div[@class="airport"]');
@@ -84,12 +90,10 @@ class My_FlightController extends Controller
             //     }
             // }
 
-            //exit;--------------------------the upper commneted codes did not work as kayak prevents such action maybe
+            //exit;--------------------------the upper commneted codes did not work as kayak prevents such action.Please ignore!*/
 
-
-
+            /*Fetch for the duration.*/
             $durations = array();
-              //fetch for the duration 
             $flight_row = $flight_xpath->query('//div[@class="detailsinfo"]');
 
             if ( $flight_row->length > 0 )
@@ -102,7 +106,7 @@ class My_FlightController extends Controller
                 }
             }
             
-
+            /*Fetch for the price.*/
             $cost = array();
             $flight_money = $flight_xpath->query('//span[@itemprop="price"]');
 
@@ -116,6 +120,7 @@ class My_FlightController extends Controller
                 }
             }
           
+            /*Fetch for the airline name.*/
             $airline = array();
             $flight_img = $flight_xpath->query('//div[@class="airlineName"]');
 
@@ -129,9 +134,8 @@ class My_FlightController extends Controller
                 }
             }
 
-
+            /*Fetch for the place ie airport.*/
             $roundtrip = array();
-            //for place of arrival and deaprture
             $flight_air1 = $flight_xpath->query('//div[@class="airport"]');
 
             if ( $flight_air1->length > 0 )
@@ -144,9 +148,9 @@ class My_FlightController extends Controller
                 }
             }
             
-
+            /*Fetch for the duration Since it diplays a round trip data always map one loop with *two while displaying.
+            */
             $duration = array();
-            //for time duration ....map with every two
             $flight_time = $flight_xpath->query('//div[@class="duration"]');
 
             if ( $flight_time->length > 0 )
@@ -159,9 +163,8 @@ class My_FlightController extends Controller
                 }
             }
             
-
+             /*Fetch for the place ie airportlists.*/
             $stophere = array();
-            //for airportslist class="airportslist"
             $flight_stoppage = $flight_xpath->query('//span[@class="airportslist"]');
 
             if ( $flight_stoppage->length > 0 )
@@ -173,7 +176,6 @@ class My_FlightController extends Controller
                     $i++;
                 }
             }
-
         }
 
         return \View::make('flight_details')
@@ -182,10 +184,8 @@ class My_FlightController extends Controller
             ->with('airline' , $airline)
             ->with('roundtrip' , $roundtrip)
             ->with('duration' , $duration)
-            ->with('stops' , $stophere);
-           
+            ->with('stops' , $stophere);           
     }
-
 
 }
 

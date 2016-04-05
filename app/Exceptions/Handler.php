@@ -43,7 +43,7 @@ class Handler extends ExceptionHandler
     //  * @param  \Illuminate\Http\Request  $request            |
     //  * @param  \Exception  $e
     //  * @return \Illuminate\Http\Response
-    //  */                                                      //uncomment this to rmove custom display of 404
+    //  */                                                      //uncomment this to remove custom display of 404
     // public function render($request, Exception $e)           |
     // {                                                        |   
     //     return parent::render($request, $e);                 |
